@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Register</title>
+    <title>REPGEMENT</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,21 +26,22 @@
 
     <div class="container">
       <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Register an Account</div>
+        <div class="card-header text-center">Registre-se</div>
         <div class="card-body">
           <form>
             <div class="form-group">
+              <div class="card-header text-center">Dados Pessoais</div><br>
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
                     <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
-                    <label for="firstName">First name</label>
+                    <label for="firstName">Nome</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
                     <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
-                    <label for="lastName">Last name</label>
+                    <label for="lastName">Sobrenome</label>
                   </div>
                 </div>
               </div>
@@ -48,30 +49,86 @@
             <div class="form-group">
               <div class="form-label-group">
                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
-                <label for="inputEmail">Email address</label>
+                <label for="inputEmail">Email</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-row">
+                <div class="col-md-12">
+                  <div class="form-label-group">
+                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required">
+                    <label for="inputDate">Data de Nascimento</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="card-header text-center">Dados República</div><br>
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <div class="text-center">República residente:</div><br>
+                    <select class="col-md-12">
+                      <option value="">República 1</option>
+                      <option value="">República 2</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group medium text-center alert">
+                    Sua república não está cadastradada? <a class="" href="registerRep.html">Cadastre-a</a>.
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+            <div class="form-group">
+              <div class="card-header text-center">Dados Usuário</div><br>
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group larger text-center">
+                    Usuário:
+                  </div>
+                </div>                
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <select class="col-md-12">
+                      <option value="">Administrador</option>
+                      <option value="">Comum</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              </br>
+              <div class="form-row">
+                <div class="col-md-12">
+                  <div class="form-label-group">
+                    <input type="text" id="inputText" class="form-control" placeholder="Username" required="required">
+                    <label for="inputText">Username</label>
+                  </div>
+                </div>
+              </div>  
+              <br>
+              <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                    <label for="inputPassword">Password</label>
+                    <label for="inputPassword">Senha</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
                     <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-                    <label for="confirmPassword">Confirm password</label>
+                    <label for="confirmPassword">Confirme a Senha</label>
                   </div>
                 </div>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="login.html">Register</a>
+            <a class="btn btn-primary btn-block" href="index.html">Registrar</a>
           </form>
           <div class="text-center">
-            <a class="d-block small mt-3" href="login.html">Login Page</a>
-            <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+            <a class="d-block small mt-3" href="index.html">Logar</a>
+            <a class="d-block small" href="forgot-password.html">Esqueceu a senha?</a>
           </div>
         </div>
       </div>
