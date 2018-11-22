@@ -6,6 +6,7 @@
     function __construct() {
         //  $this->link = mysqli_connect("localhost", "root", "", "TPBDI");
         $this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB", "root", "");
+        $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     function conexao() {
