@@ -1,6 +1,6 @@
 <?php
 	//	Inclui o arquivo de conexão com a base de dados.
-	include_once 'mysql.php';
+	include_once './mysql.php';
 
 	// Recupera o login 
 	$post_login = $_POST['email']; 
@@ -20,8 +20,7 @@
 	//	Verifica o acesso ao usuário e redireciona a página correta
 	if(!$linha){
 		//	Usuário não existe
-		echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos.');window.location.href='index.html';</script>";
-        die();
+		echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos.');window.location.href='./index.html';</script>";
         header("Location:./index.html");
 	} 
 		session_start();

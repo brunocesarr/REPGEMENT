@@ -2,10 +2,14 @@
 	class Conexao {
 
     private $link;
+    private $servername = "mysql.hostinger.com";
+    private $username = "u667552060_root";
+    private $database = "u667552060_repgm";
+    private $password = "host10";
 
     function __construct() {
         //  $this->link = mysqli_connect("localhost", "root", "", "TPBDI");
-        $this->link = new PDO("mysql:host=localhost;dbname=u667552060_root", "root", "host10");
+        $this->link = new PDO("mysql:host=localhost;dbname=u667552060_repgm", "u667552060_root", "host10");
         $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
