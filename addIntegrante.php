@@ -1,3 +1,32 @@
+<?php
+$msg = '';
+include_once("conexao.php");
+
+$nome = $_POST['nome'];
+$sobrenome = $_POST['sobrenome'];
+$data_Nasc = $_POST['data_Nasc'];
+$email = $_POST['email'];
+$username = $_POST['username'];
+$senha = $_POST['senha'];
+$nivel = $_POST['nivel'];
+$id_republica = $_POST['id_republica'];
+
+$sql = "INSERT INTO integrante(nome, sobrenome, data_Nasc, email, username, senha, nivel, id_republica) VALUES('$nome', '$sobrenome', '$data_Nasc', '$email','$username','$senha','$nivel','$id_republica')";
+$salvar = mysqli_query($conexao, $sql);
+
+//echo $sql;
+// if($salvar){
+//   $msg = "Usuario cadastrado com sucesso!";
+// }else{
+//   $msg = "Ocorreu um erro no cadastro!";
+// }
+
+//mysqli_affected_rows mostra quantas linhas foram afetadas no banco de dados
+$linhas = mysqli_affected_rows($conexao);
+
+mysqli_close($conexao);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,6 +55,9 @@
   </head>
 
   <body id="page-top">
+    <?php if($msg): ?>
+      <p><?php echo $msg; ?></p>
+    <?php endif; ?>  
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -119,13 +151,13 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="Nome" required="required" autofocus="autofocus">
+                    <input type="text" id="firstName" class="form-control" placeholder="Nome" name="nome" required="required" autofocus="autofocus">
                     <label for="firstName">Nome</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstSobrenome" class="form-control" placeholder="Sobrenome" required="required" autofocus="autofocus">
+                    <input type="text" id="firstSobrenome" class="form-control" placeholder="Sobrenome" name="sobrenome" required="required" autofocus="autofocus">
                     <label for="firstName">Sobrenome</label>
                   </div>
                 </div>
@@ -134,52 +166,45 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="required" autofocus="autofocus">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required="required" autofocus="autofocus">
                     <label for="firstName">E-mail</label>
                   </div>
                 </div>
               </div>
               <br>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="inputRua" class="form-control" placeholder="Username" required="required">
-                    <label for="inputRua">Rua</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="inputBairro" class="form-control" placeholder="Bairro" required="required">
-                    <label for="inputBairro">Bairro</label>
-                  </div>
-                </div>    
-              </div>
-            </div>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="inputCidade" class="form-control" placeholder="Cidade" required="required">
-                    <label for="inputCidade">Cidade</label>
-                  </div>
-                </div>
             </div>
             <br>
             <div class="form-row">
               <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstUsername" class="form-control" placeholder="Username" required="required" autofocus="autofocus">
+                    <input type="text" id="firstUsername" class="form-control" placeholder="Username" name="username" required="required" autofocus="autofocus">
                     <label for="firstUsername">Username</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="inputSenha" class="form-control" placeholder="Senha" required="required">
+                    <input type="password" id="inputSenha" class="form-control" placeholder="Senha" name="senha"required="required">
                     <label for="inputSenha">Senha</label>
                   </div>
                 </div>    
               </div>
               <br>
-            <a class="btn btn-primary btn-block" href="register.html">Registrar Integrante</a>
+              <div class="form-row">
+              <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="number" id="firstNivel" class="form-control" placeholder="Nivel" name="nivel" required="required" autofocus="autofocus">
+                    <label for="firstNivel">Nível de acesso</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="text" id="inputId" class="form-control" placeholder="Id" name="id_republica"required="required">
+                    <label for="inputId">Codigo da Republica</label>
+                  </div>
+                </div>    
+              </div>
+              <br>
+              <input type="submit" value="Registrar Integrante" class="btn btn-primary btn-block">
           </form>
         </div>
       </div>
