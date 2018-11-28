@@ -21,9 +21,10 @@
 	if(!$linha){
 		//	Usuário não existe
 		echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos.');window.location.href='./index.html';</script>";
-        header("Location:./index.html");
-	} 
+        //	header("Location:./index.html");
+	} else {
+		echo"<script language='javascript' type='text/javascript'>alert('Bem Vindo.');window.location.href='./home.html';</script>";
 		session_start();
 		$_SESSION['user'] = $linha;
-		header("Location: ./home.html");
+	}
 ?>
