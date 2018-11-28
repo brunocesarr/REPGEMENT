@@ -1,5 +1,5 @@
 <?php
-	class Conexao {
+    class Conexao {
 
     private $link;
     private $servername = "mysql.hostinger.com";
@@ -30,5 +30,5 @@
         return $linha;
     }
 
-	}
+    }
 ?>
