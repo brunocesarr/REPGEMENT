@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REPGEMENT - DIVIDAS</title>
+    <title>REPGEMENT - dividas</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +27,7 @@
 
   <body id="page-top">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
       <a class="navbar-brand mr-1" href="home.html">REPGEMENT</a>
 
@@ -77,7 +77,7 @@
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">República:</h6>
             <a class="dropdown-item" href="totalgasto.html">Gasto Total</a>
-            <a class="dropdown-item" href="addIntegrante.php">Adicionar Integrante</a>
+            <a class="dropdown-item" href="integrante.html">Integrantes</a>
           </div>
         </li>
         <li class="nav-item">
@@ -101,12 +101,27 @@
             <li class="breadcrumb-item">
               <a href="home.html">Painel de Controle</a>
             </li>
-            <li class="breadcrumb-item active">Dívidas</li>
+            <li class="breadcrumb-item active">Dividas</li>
           </ol>
 
           <!-- Page Content -->
-          <h1>Dívidas</h1>
+          <h1>Gestão de Dividas</h1>
           <hr>
+
+                  <div class="container">
+      <div class="card card-register mx-auto mt-5">
+        <div class="card-header text-center">Opções</div>
+        <div class="card-body">
+          <form>
+                <a class="btn btn-primary btn-block" href="altIntegrante.php">Alterar Dividas</a>
+                <br>
+                <a class="btn btn-primary btn-block" href="regIntegrante.php">Consultar Dividas</a>
+                <br>
+                <a class="btn btn-primary btn-block" href="remoIntegrante.php">Remover Dividas</a>
+          </form>
+        </div>
+      </div>
+    </div>
 
         </div>
         <!-- /.container-fluid -->
