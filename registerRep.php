@@ -16,12 +16,12 @@ $num_integrante = $_POST['num_integrante'];
 $sql = "INSERT INTO republica(nome, ano, username, rua, numero, complemento, bairro, cidade, estado,num_integrante) VALUES('$nome', '$ano', '$username', '$rua','$numero','$complemento','$bairro','$cidade','$estado','$num_integrante')";
 $salvar = mysqli_query($conexao, $sql);
 
-echo $sql;
-if($salvar){
-  $msg = "Usuario cadastrado com sucesso!";
-}else{
-  $msg = "Ocorreu um erro no cadastro!";
-}
+// echo $sql;
+// if($salvar){
+//   $msg = "Usuario cadastrado com sucesso!";
+// }else{
+//   $msg = "Ocorreu um erro no cadastro!";
+// }
 
 //mysqli_affected_rows mostra quantas linhas foram afetadas no banco de dados
 $linhas = mysqli_affected_rows($conexao);

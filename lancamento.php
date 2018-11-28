@@ -1,3 +1,29 @@
+<?php
+$msg = '';
+include_once("conexao.php");
+
+  $id_tipo = $_POST['id_tipo'];
+  $valor = $_POST['valor'];
+  $data_venc = $_POST['data_venc'];
+  $id_integrante = $_POST['id_integrante'];
+
+  $sql = "INSERT INTO republica(id_tipo, valor, data_venc, id_integrante) VALUES('$id_tipo', '$valor', '$data_venc', '$id_integrante')";
+  $salvar = mysqli_query($conexao, $sql);
+
+  // echo $sql;
+  // if($salvar){
+  //   $msg = "Usuario cadastrado com sucesso!";
+  // }else{
+  //   $msg = "Ocorreu um erro no cadastro!";
+  // }
+
+  //mysqli_affected_rows mostra quantas linhas foram afetadas no banco de dados
+  $linhas = mysqli_affected_rows($conexao);
+
+  mysqli_close($conexao);
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,7 +35,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REPGEMENT - LANÇAMENTOS</title>
+    <title>REPGEMENT - Lançamentos</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -71,13 +97,13 @@
             <span>Operações</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-             <h6 class="dropdown-header">Contas:</h6>
-            <a class="dropdown-item" href="#">Lançamentos</a>
+            <h6 class="dropdown-header">Contas:</h6>
+            <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
             <a class="dropdown-item" href="divida.html">Dívidas</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">República:</h6>
             <a class="dropdown-item" href="totalgasto.html">Gasto Total</a>
-            <a class="dropdown-item" href="addIntegrante.html">Adicionar Integrante</a>
+            <a class="dropdown-item" href="addIntegrante.php">Adicionar Integrante</a>
           </div>
         </li>
         <li class="nav-item">
@@ -118,17 +144,23 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="Nome" required="required" autofocus="autofocus">
+                    <input type="text" id="firstName" class="form-control" placeholder="Nome" name="id_tipo" required="required" autofocus="autofocus">
                     <label for="firstName">Tipo de Conta</label>
                   </div>
                 </div>
               </div>
               <br>
               <div class="form-row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="number" id="inputValor" class="form-control" placeholder="Valor" required="required" autofocus="autofocus">
+                    <input type="number" id="inputValor" class="form-control" placeholder="Valor" name="valor" required="required" autofocus="autofocus">
                     <label for="firstName">Valor da Conta</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="number" id="inputId" class="form-control" placeholder="Id_integrante" name="id_integrante" required="required" autofocus="autofocus">
+                    <label for="firstName">Codigo do Integrante</label>
                   </div>
                 </div>
               </div>
@@ -136,7 +168,7 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="date" id="inputValor" class="form-control" placeholder="Data" required="required" autofocus="autofocus">
+                    <input type="date" id="inputValor" class="form-control" placeholder="Data" name="data_venc" required="required" autofocus="autofocus">
                     <label for="firstName">Data de Vencimento</label>
                   </div>
                 </div>
