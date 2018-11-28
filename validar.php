@@ -10,7 +10,7 @@
 	//	Realiza a busca na base de dados
 	$con = new Conexao();
 	$link = $con->conexao();
-	//	$sql = $link->prepare("SELECT f_validar3(:login, :senha);");
+	//	$sql = $link->prepare("SELECT f_validar(:login, :senha);");
 	$sql = $link->prepare("SELECT * FROM integrante i WHERE i.email = :login AND i.senha = :senha;");
 	$sql->bindParam(':login', $post_login, PDO::PARAM_STR);
 	$sql->bindParam(':senha', $post_senha, PDO::PARAM_STR); 
@@ -23,7 +23,7 @@
 		echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos.');window.location.href='./index.html';</script>";
         //	header("Location:./index.html");
 	} else {
-		echo"<script language='javascript' type='text/javascript'>alert('Bem Vindo.');window.location.href='./home.html';</script>";
+		echo"<script language='javascript' type='text/javascript'>alert('Bem Vindo $linha->nome $linha->sobrenome.');window.location.href='./home.html';</script>";
 		session_start();
 		$_SESSION['user'] = $linha;
 	}
