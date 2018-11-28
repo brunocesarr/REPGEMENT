@@ -145,7 +145,7 @@ mysqli_close($conexao);
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Adicionar Integrante</div>
         <div class="card-body">
-          <form>
+          <form action="POST">
             <div class="form-group">
               <div class="card-header text-center">Dados</div><br>
               <div class="form-row">
