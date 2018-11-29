@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
   <head>
-
+    <?php 
+      /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
+       simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
+      o caminho para a página principal do site (sistema), burlando assim a obrigação de 
+      fazer um login, com isso se ele não estiver feito o login não será criado a session, 
+      então ao verificar que a session não existe a página redireciona o mesmo
+       para a index.php.*/
+      session_start();
+      if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['senha']) == true))
+      {
+        unset($_SESSION['login']);
+        unset($_SESSION['senha']);
+        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.html';</script>";
+        }
+       
+      $logado = $_SESSION['login'];
+    ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REPGEMENT - Integrantes</title>
+    <title>REPGEMENT - Tabelas</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -27,9 +43,9 @@
 
   <body id="page-top">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="home.html">REPGEMENT</a>
+      <a class="navbar-brand mr-1" href="home.php">REPGEMENT</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -44,7 +60,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#"> </a>
-            <a class="dropdown-item" href="#">Nome Usuario </a>
+            <a class="dropdown-item" href="#"><?php echo $logado ?></a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
           </div>
@@ -54,12 +70,13 @@
 
     </nav>
 
+
     <div id="wrapper">
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="home.html">
+          <a class="nav-link" href="home.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Painel de controle</span>
           </a>
@@ -72,20 +89,20 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Contas:</h6>
             <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
-            <a class="dropdown-item" href="divida.html">Dívidas</a>
+            <a class="dropdown-item" href="divida.php">Dívidas</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">República:</h6>
-            <a class="dropdown-item" href="totalgasto.html">Gasto Total</a>
-            <a class="dropdown-item" href="integrante.html">Integrantes</a>
+            <a class="dropdown-item" href="totalgasto.php">Gasto Total</a>
+            <a class="dropdown-item" href="integrante.php">Integrantes</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" href="charts.phpp">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Gráficos</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Tabelas</span></a>
         </li>
@@ -98,36 +115,82 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.html">Painel de Controle</a>
+              <a href="#">Painel de Controle</a>
             </li>
-            <li class="breadcrumb-item active">Integrantes</li>
+            <li class="breadcrumb-item active">Tabelas</li>
           </ol>
 
-          <!-- Page Content -->
-          <h1>Gestão de integrantes</h1>
-          <hr>
+          <!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Exemplo de Tabela</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Data</th>
+                      <th>Descrição da Conta</th>
+                      <th>Devedor</th>
+                      <th>Valor</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Data</th>
+                      <th>Descrição da Conta</th>
+                      <th>Devedor</th>
+                      <th>Valor</th>
+                      </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr>
+                      <td>2011/04/25</td>
+                      <td>System Architect</td>
+                      <td>Tiger Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>2011/04/25</td>
+                      <td>System Architect</td>
+                      <td>Tiger Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>2011/04/25</td>
+                      <td>System Architect</td>
+                      <td>Tiger Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>2011/04/25</td>
+                      <td>System Architect</td>
+                      <td>Tiger Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>2011/04/26</td>
+                      <td>System Architect</td>
+                      <td>Riy Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <button class="btn-primary float-right" href="#">Gerar Relatório</button>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+          </div>
 
-                  <div class="container">
-      <div class="card card-register mx-auto mt-5">
-        <div class="card-header text-center">Opções</div>
-        <div class="card-body">
-          <form>
-                <a class="btn btn-primary btn-block" href="addIntegrante.php">Adicionar Integrante</a>
-                <br>
-                <a class="btn btn-primary btn-block" href="alteraIntegrante.php">Alterar Integrante</a>
-                <br>
-                <a class="btn btn-primary btn-block" href="consultaIntegrante.php">Consultar Integrante</a>
-                <br>
-                <a class="btn btn-primary btn-block" href="removeIntegrante.php">Remover Integrante</a>
-          </form>
-        </div>
-      </div>
-    </div>
+          <p class="small text-center text-muted my-5">
+            <em>Isso é tudo pessoal!</em>
+          </p>
 
         </div>
         <!-- /.container-fluid -->
 
-         <!-- Sticky Footer -->
+        <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
@@ -160,7 +223,7 @@
           <div class="modal-body">Selecione "Logout" se você estiver pronto para encerrar sua sessão atual.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="logout.php">Logout</a>
           </div>
         </div>
       </div>
@@ -174,7 +237,6 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Page level plugin JavaScript-->
-    <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/datatables/jquery.dataTables.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
@@ -183,7 +245,6 @@
 
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
 
   </body>
 

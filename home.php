@@ -75,7 +75,7 @@
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="home.html">
+          <a class="nav-link" href="home.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Painel de controle</span>
           </a>
@@ -88,20 +88,20 @@
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Contas:</h6>
             <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
-            <a class="dropdown-item" href="divida.html">Dívidas</a>
+            <a class="dropdown-item" href="divida.php">Dívidas</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">República:</h6>
-            <a class="dropdown-item" href="totalgasto.html">Gasto Total</a>
-            <a class="dropdown-item" href="integrante.html">Integrantes</a>
+            <a class="dropdown-item" href="totalgasto.php">Gasto Total</a>
+            <a class="dropdown-item" href="integrante.php">Integrantes</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="charts.html">
+          <a class="nav-link" href="charts.phpp">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Gráficos</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Tabelas</span></a>
         </li>
