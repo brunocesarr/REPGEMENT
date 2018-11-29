@@ -1,32 +1,3 @@
-<?php
-$msg = '';
-include_once("conexao.php");
-
-$nome = $_POST['nome'];
-$sobrenome = $_POST['sobrenome'];
-$data_Nasc = $_POST['data_Nasc'];
-$email = $_POST['email'];
-$username = $_POST['username'];
-$senha = $_POST['senha'];
-$nivel = $_POST['nivel'];
-$id_republica = $_POST['id_republica'];
-
-$sql = "INSERT INTO integrante(nome, sobrenome, data_Nasc, email, username, senha, nivel, id_republica) VALUES('$nome', '$sobrenome', '$data_Nasc', '$email','$username','$senha','$nivel','$id_republica')";
-$salvar = mysqli_query($conexao, $sql);
-
-//echo $sql;
-// if($salvar){
-//   $msg = "Usuario cadastrado com sucesso!";
-// }else{
-//   $msg = "Ocorreu um erro no cadastro!";
-// }
-
-//mysqli_affected_rows mostra quantas linhas foram afetadas no banco de dados
-$linhas = mysqli_affected_rows($conexao);
-
-mysqli_close($conexao);
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -67,7 +38,7 @@ mysqli_close($conexao);
         <i class="fas fa-bars"></i>
       </button>
 
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" method="POST" action="cadastrar.php">
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow">
@@ -183,7 +154,7 @@ mysqli_close($conexao);
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="inputSenha" class="form-control" placeholder="Senha" name="senha"required="required">
+                    <input type="password" id="inputSenha" class="form-control" placeholder="Senha" name="senha" required="required">
                     <label for="inputSenha">Senha</label>
                   </div>
                 </div>    

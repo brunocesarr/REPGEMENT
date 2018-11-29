@@ -2,6 +2,23 @@
 <html lang="pt-br">
 
   <head>
+    <?php 
+      /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
+       simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
+      o caminho para a página principal do site (sistema), burlando assim a obrigação de 
+      fazer um login, com isso se ele não estiver feito o login não será criado a session, 
+      então ao verificar que a session não existe a página redireciona o mesmo
+       para a index.php.*/
+      session_start();
+      if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['senha']) == true))
+      {
+        unset($_SESSION['login']);
+        unset($_SESSION['senha']);
+        header('location:index.php');
+        }
+       
+      $logado = $_SESSION['login'];
+    ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,7 +45,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="home.html">REPGEMENT</a>
+      <a class="navbar-brand mr-1" href="home.php">REPGEMENT</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -43,7 +60,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#"> </a>
-            <a class="dropdown-item" href="#">Nome do Integrante </a>
+            <a class="dropdown-item" href="#"><?php echo $logado ?></a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
           </div>
@@ -280,7 +297,7 @@
           <div class="modal-body">Selecione "Logout" se você estiver pronto para encerrar sua sessão atual.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="index.html">Logout</a>
           </div>
         </div>
       </div>

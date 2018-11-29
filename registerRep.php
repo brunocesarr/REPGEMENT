@@ -1,6 +1,10 @@
 <?php
 $msg = '';
-include_once("conexao.php");
+include_once("mysql.php");
+
+  //  Realiza a busca na base de dados
+  $con = new Conexao();
+  $link = $con->conexao();
 
 $nome = $_POST['nome'];
 $ano = $_POST['ano'];
@@ -14,7 +18,7 @@ $estado = $_POST['estado'];
 $num_integrante = $_POST['num_integrante'];
 
 $sql = "INSERT INTO republica(nome, ano, username, rua, numero, complemento, bairro, cidade, estado,num_integrante) VALUES('$nome', '$ano', '$username', '$rua','$numero','$complemento','$bairro','$cidade','$estado','$num_integrante')";
-$salvar = mysqli_query($conexao, $sql);
+$salvar = mysqli_query($con, $sql);
 
 // echo $sql;
 // if($salvar){
@@ -24,7 +28,7 @@ $salvar = mysqli_query($conexao, $sql);
 // }
 
 //mysqli_affected_rows mostra quantas linhas foram afetadas no banco de dados
-$linhas = mysqli_affected_rows($conexao);
+$linhas = mysqli_affected_rows($con);
 
 mysqli_close($conexao);
 ?>

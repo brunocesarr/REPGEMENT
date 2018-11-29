@@ -10,11 +10,7 @@
     function __construct() {
         //  Versão WEB
         //  $this->link = new PDO("mysql:host=$servername;dbname=$database", "$username", "$password");
-        //  Versão Local - Bruno
-        $this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB", "root", "");
-        //  Versão Local - Darlan
-        //  $this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB", "root", "root");
-
+        
         $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
