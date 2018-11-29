@@ -1,32 +1,3 @@
-<?php
-$msg = '';
-include_once("conexao.php");
-
-$nome = $_POST['nome'];
-$sobrenome = $_POST['sobrenome'];
-$data_Nasc = $_POST['data_Nasc'];
-$email = $_POST['email'];
-$username = $_POST['username'];
-$senha = $_POST['senha'];
-$nivel = $_POST['nivel'];
-$id_republica = $_POST['id_republica'];
-
-$sql = "INSERT INTO integrante(nome, sobrenome, data_Nasc, email, username, senha, nivel, id_republica) VALUES('$nome', '$sobrenome', '$data_Nasc', '$email','$username','$senha','$nivel','$id_republica')";
-$salvar = mysqli_query($conexao, $sql);
-
-//echo $sql;
-// if($salvar){
-//   $msg = "Usuario cadastrado com sucesso!";
-// }else{
-//   $msg = "Ocorreu um erro no cadastro!";
-// }
-
-//mysqli_affected_rows mostra quantas linhas foram afetadas no banco de dados
-$linhas = mysqli_affected_rows($conexao);
-
-mysqli_close($conexao);
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -38,7 +9,7 @@ mysqli_close($conexao);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REPGEMENT - INTEGRANTE</title>
+    <title>REPGEMENT - altera</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -53,11 +24,6 @@ mysqli_close($conexao);
     <link href="css/sb-admin.css" rel="stylesheet">
 
   </head>
-
-  <body id="page-top">
-    <?php if($msg): ?>
-      <p><?php echo $msg; ?></p>
-    <?php endif; ?>  
 
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -135,82 +101,31 @@ mysqli_close($conexao);
               <a href="home.html">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="integrante.html">Integrantes</a>
+              <a href="divida.html">Dividas</a>
             </li>
-            <li class="breadcrumb-item active">Integrantes</li>
-          </ol>
+            <li class="breadcrumb-item active">Alterar Divida</li>
+          </ol>         
 
-   <div class="container">
+          <div class="container">
       <div class="card card-register mx-auto mt-5">
-        <div class="card-header text-center">Adicionar Integrante</div>
+        <div class="card-header text-center">Alterar Divida</div>
         <div class="card-body">
           <form action="POST">
             <div class="form-group">
-              <div class="card-header text-center">Dados</div><br>
               <div class="form-row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="Nome" name="nome" required="required" autofocus="autofocus">
-                    <label for="firstName">Nome</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="firstSobrenome" class="form-control" placeholder="Sobrenome" name="sobrenome" required="required" autofocus="autofocus">
-                    <label for="firstName">Sobrenome</label>
+                    <input type="number" id="firstCodigoInt" class="form-control" placeholder="Codigo do Integrante" name="codigoInt" required="required" autofocus="autofocus">
+                    <label for="firstCodigoInt">Codigo da Conta</label>
                   </div>
                 </div>
               </div>
               <br>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required="required" autofocus="autofocus">
-                    <label for="firstName">E-mail</label>
-                  </div>
-                </div>
-              </div>
-              <br>
-            </div>
-            <br>
-            <div class="form-row">
-              <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="firstUsername" class="form-control" placeholder="Username" name="username" required="required" autofocus="autofocus">
-                    <label for="firstUsername">Username</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="password" id="inputSenha" class="form-control" placeholder="Senha" name="senha"required="required">
-                    <label for="inputSenha">Senha</label>
-                  </div>
-                </div>    
-              </div>
-              <br>
-              <div class="form-row">
-              <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="number" id="firstNivel" class="form-control" placeholder="Nivel" name="nivel" required="required" autofocus="autofocus">
-                    <label for="firstNivel">Nível de acesso</label>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="inputId" class="form-control" placeholder="Id" name="id_republica"required="required">
-                    <label for="inputId">Codigo da Republica</label>
-                  </div>
-                </div>    
-              </div>
-              <br>
-              <input type="submit" value="Registrar Integrante" class="btn btn-primary btn-block">
+              <input type="submit" value="Pesquisar Conta" class="btn btn-primary btn-block">
           </form>
         </div>
       </div>
     </div>
-
-  </div>
-        <!-- /.container-fluid -->
 
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
