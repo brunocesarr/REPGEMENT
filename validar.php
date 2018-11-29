@@ -1,7 +1,6 @@
 <?php
 	//	Inclui o arquivo de conexão com a base de dados.
 	include_once './mysql.php';
-
 	session_start();
 
 	// Recupera o login 

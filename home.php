@@ -14,7 +14,7 @@
       {
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
-        header('location:index.php');
+        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.html';</script>";
         }
        
       $logado = $_SESSION['login'];
@@ -297,7 +297,7 @@
           <div class="modal-body">Selecione "Logout" se você estiver pronto para encerrar sua sessão atual.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="index.html">Logout</a>
+            <a class="btn btn-primary" href="logout.php">Logout</a>
           </div>
         </div>
       </div>
