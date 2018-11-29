@@ -47,8 +47,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#"> </a>
-            <a class="dropdown-item" href="#">Configurações </a>
-            <a class="dropdown-item" href="#">Registro de atividade</a>
+            <a class="dropdown-item" href="#">Nome Usuario </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
           </div>
@@ -105,12 +104,11 @@
             <li class="breadcrumb-item">
               <a href="home.html">Painel de Controle</a>
             </li>
+            <li class="breadcrumb-item">
+              <a href="integrante.html">Integrantes</a>
+            </li>
             <li class="breadcrumb-item active">Integrantes</li>
           </ol>
-
-          <!-- Page Content -->
-          <h1>Integrantes</h1>
-          <hr>
 
    <div class="container">
       <div class="card card-register mx-auto mt-5">

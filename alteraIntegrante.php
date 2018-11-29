@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REPGEMENT - Integrantes</title>
+    <title>REPGEMENT - alterar</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,9 +25,7 @@
 
   </head>
 
-  <body id="page-top">
-
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
       <a class="navbar-brand mr-1" href="home.html">REPGEMENT</a>
 
@@ -53,6 +51,7 @@
         </form>
 
     </nav>
+
 
     <div id="wrapper">
 
@@ -100,32 +99,32 @@
             <li class="breadcrumb-item">
               <a href="home.html">Painel de Controle</a>
             </li>
-            <li class="breadcrumb-item active">Integrantes</li>
-          </ol>
+            <li class="breadcrumb-item">
+              <a href="integrante.html">Integrantes</a>
+            </li>
+            <li class="breadcrumb-item active">Alterar integrante</li>
+          </ol>         
 
-          <!-- Page Content -->
-          <h1>Gestão de integrantes</h1>
-          <hr>
-
-                  <div class="container">
+          <div class="container">
       <div class="card card-register mx-auto mt-5">
-        <div class="card-header text-center">Opções</div>
+        <div class="card-header text-center">Alterar integrante</div>
         <div class="card-body">
-          <form>
-                <a class="btn btn-primary btn-block" href="addIntegrante.php">Adicionar Integrante</a>
-                <br>
-                <a class="btn btn-primary btn-block" href="alteraIntegrante.php">Alterar Integrante</a>
-                <br>
-                <a class="btn btn-primary btn-block" href="consultaIntegrante.php">Consultar Integrante</a>
-                <br>
-                <a class="btn btn-primary btn-block" href="removeIntegrante.php">Remover Integrante</a>
+          <form action="POST">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-12">
+                  <div class="form-label-group">
+                    <input type="number" id="firstCodigoInt" class="form-control" placeholder="Codigo do Integrante" name="codigoInt" required="required" autofocus="autofocus">
+                    <label for="firstCodigoInt">Codigo do Integrante</label>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <input type="submit" value="Pesquisar Integrante" class="btn btn-primary btn-block">
           </form>
         </div>
       </div>
     </div>
-
-        </div>
-        <!-- /.container-fluid -->
 
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
