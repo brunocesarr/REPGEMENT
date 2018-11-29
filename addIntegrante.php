@@ -165,8 +165,13 @@
                     <label for="firstName">E-mail</label>
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required">
+                    <label for="inputDate">Data de Nascimento</label>
+                  </div>
+                </div>
               </div>
-              <br>
             </div>
             <br>
             <div class="form-row">
@@ -185,29 +190,29 @@
               </div>
               <br>
               <div class="form-row">
-              <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="number" id="firstNivel" class="form-control" placeholder="Nivel" name="nivel" required="required" autofocus="autofocus">
-                    <label for="firstNivel">Nível de acesso</label>
+                <div class="col-md-6">
+                    <label for="inputState">Tipo de Usuário</label>                  
+                    <div class="form-label-group">
+                    <select id="inputState" class="form-control" name="nivel">
+                      <option selected>Escolha...</option>
+                      <option value="0">Comum</option>
+                      <option value="1">Administrador</option>
+                    </select>
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-label-group">
-                    <input type="text" id="inputId" class="form-control" placeholder="Id" name="id_republica"required="required">
-                    <select name="id_republica">
+                    <label for="inputState">República Residente</label>                  
+                    <div class="form-label-group">
+                    <select id="inputState" class="form-control" name="id_republica">
+                      <option selected>Escolha...</option>
                       <?php
-                        echo '<select>';
-                        foreach($linha as $value) {
-                            echo '<option value="' .$value->id_republica .'">';
-                            echo $value->nome;
-                            echo '</option>';
+                        for ($i=0; $i < count($linha); $i++) { 
+                          echo "<option value='$linha[$i]->id_republica'>$linha[$i]->nome</option>";
                         }
-                        echo '</select>'; 
                       ?>
                     </select>
-                    <label for="inputId">Codigo da Republica</label>
                   </div>
-                </div>    
+                </div>                
               </div>
               <br>
               <input type="submit" value="Registrar Integrante" class="btn btn-primary btn-block">
