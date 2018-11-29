@@ -3,6 +3,19 @@
 
   <head>
     <?php 
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      
+      $sql = $link->prepare("SELECT id_republica, nome FROM republica ORDER BY nome;");
+      
+      $sql->execute();
+      $linha = $sql->fetchObject();
+    ?>
+    <?php 
       /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
        simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
       o caminho para a página principal do site (sistema), burlando assim a obrigação de 
@@ -42,11 +55,8 @@
   </head>
 
   <body id="page-top">
-    <?php if($msg): ?>
-      <p><?php echo $msg; ?></p>
-    <?php endif; ?>  
 
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
       <a class="navbar-brand mr-1" href="home.php">REPGEMENT</a>
 
@@ -130,7 +140,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Adicionar Integrante</div>
         <div class="card-body">
-          <form action="POST">
+          <form method="POST" action="cadastrar.php">
             <div class="form-group">
               <div class="card-header text-center">Dados</div><br>
               <div class="form-row">
@@ -184,6 +194,17 @@
                 <div class="col-md-6">
                   <div class="form-label-group">
                     <input type="text" id="inputId" class="form-control" placeholder="Id" name="id_republica"required="required">
+                    <select name="id_republica">
+                      <?php
+                        echo '<select>';
+                        foreach($linha as $value) {
+                            echo '<option value="' .$value->id_republica .'">';
+                            echo $value->nome;
+                            echo '</option>';
+                        }
+                        echo '</select>'; 
+                      ?>
+                    </select>
                     <label for="inputId">Codigo da Republica</label>
                   </div>
                 </div>    
