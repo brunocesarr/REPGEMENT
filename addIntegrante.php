@@ -13,7 +13,7 @@
       $sql = $link->prepare("SELECT id_republica, nome FROM republica ORDER BY nome;");
       
       $sql->execute();
-      $linha = $sql->fetchObject();
+      //  $linha = $sql->fetchObject();
     ?>
     <?php 
       /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
@@ -206,8 +206,8 @@
                     <select id="inputState" class="form-control" name="id_republica">
                       <option selected>Escolha...</option>
                       <?php
-                        for ($i=0; $i < count($linha); $i++) { 
-                          echo "<option value='$linha[$i]->id_republica'>$linha[$i]->nome</option>";
+                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                          echo '<option value=' . $linha['id_republica'] . '>' . $linha['nome'] . '</option>';
                         }
                       ?>
                     </select>
