@@ -5,7 +5,7 @@
     <?php 
       include_once './mysql.php';
 
-      //  Realiza a busca na base de dados
+      //  Realiza a busca na base de dados isso
       $con = new Conexao();
       $link = $con->conexao();
 
