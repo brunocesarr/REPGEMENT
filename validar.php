@@ -14,8 +14,8 @@
 	
 	//	$sql = $link->prepare("SELECT f_validar(:login, :senha);");
 	$sql = $link->prepare("SELECT * FROM integrante i WHERE i.email = :login AND i.senha = :senha;");
-	$sql->bindParam(':login', $post_login, PDO::PARAM_STR);
-	$sql->bindParam(':senha', $post_senha, PDO::PARAM_STR); 
+	$sql->bindParam(":login", $post_login, PDO::PARAM_STR);
+	$sql->bindParam(":senha", $post_senha, PDO::PARAM_STR); 
 	$sql->execute();
 	$linha = $sql->fetchObject();
 

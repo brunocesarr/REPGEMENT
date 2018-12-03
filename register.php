@@ -38,7 +38,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Registre-se</div>
         <div class="card-body">
-          <form method="POST" action="cadastroInt.php">
+          <form method="POST" action="cadastrar.php">
             <div class="form-group">
               <div class="card-header text-center">Dados República</div><br>
               <div class="form-row">
@@ -137,7 +137,7 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="index.html">Registrar</a>
+            <input type="submit" class="btn btn-primary btn-block" value="Registrar"/>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="index.html">Logar</a>

@@ -15,20 +15,18 @@
   $id_republica = $_POST['id_republica'];
 
   $sql = $link->prepare("INSERT INTO integrante(nome, sobrenome, data_Nasc, email, username, senha, nivel, id_republica) VALUES(':nome', ':sobrenome', ':data', ':email',':username',':senha',':nivel',':republica');");
-  $sql->bindParam(':nome', $nome, PDO::PARAM_STR); 
-  $sql->bindParam(':sobrenome', $sobrenome, PDO::PARAM_STR); 
-  $sql->bindParam(':data', $data_Nasc, PDO::PARAM_STR); 
-  $sql->bindParam(':email', $email, PDO::PARAM_STR); 
-  $sql->bindParam(':username', $username, PDO::PARAM_STR); 
-  $sql->bindParam(':senha', $senha, PDO::PARAM_STR); 
-  $sql->bindParam(':nivel', $nivel, PDO::PARAM_STR); 
-  $sql->bindParam(':republica', $id_republica, PDO::PARAM_STR); 
   
-  $sql->execute();
-  $linha = $sql->fetchObject();
-
+  $sql->bindParam(":nome", $nome, PDO::PARAM_STR); 
+  $sql->bindParam(":sobrenome", $sobrenome, PDO::PARAM_STR); 
+  $sql->bindParam(":data", $data_Nasc, PDO::PARAM_STR); 
+  $sql->bindParam(":email", $email, PDO::PARAM_STR); 
+  $sql->bindParam(":username", $username, PDO::PARAM_STR); 
+  $sql->bindParam(":senha", $senha, PDO::PARAM_STR); 
+  $sql->bindParam(":nivel", $nivel, PDO::PARAM_STR); 
+  $sql->bindParam(":republica", $id_republica, PDO::PARAM_STR); 
+  
   //  Verifica o acesso ao usuário e redireciona a página correta
-  if(!$linha){
+  if(!$sql->execute()){
     //  Usuário não existe
     echo"<script language='javascript' type='text/javascript'>alert('Erro no Cadastro.');window.location.href='./Lançamento.php';</script>";
         //  header("Location:./index.html");
