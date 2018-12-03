@@ -198,21 +198,15 @@
                 <div class="col-md-6">
                     <label for="inputRep">República Residente</label>
                     <div class="form-label-group">
-                      <input class="form-control" id="disabledInput" placeholder="Campo desabilitado" disabled="" type="text"/>
-                      <!--  
-                      <?php
-                          $nome = $linha['nome'];
-                          $id_republica = $linha['id_republica'];
-                          echo '<input type="text" id="inputRep" class="form-control" placeholder="' . $nome . '" value="' . $id_republica . '" name="id_republica" required="required" disabled="disabled" class="disable"></input>';
-                        ?>
-                      -->
+                      <input class="form-control" id="disabledInput" placeholder="Campo desabilitado" readonly type="text"/>
+                      <input type=hidden name=id_republica value="República Residente">
                     </div>
                 </div>                
                 <div class="col-md-6">
                     <label for="inputState">Tipo de Usuário</label>                  
                     <div class="form-label-group">
-                    <select id="inputState" class="form-control" name="nivel">
-                      <option selected>Escolha...</option>
+                    <select id="inputState" class="form-control form-control-lg" name="nivel">
+                      <option selected disabled="disabled">Escolha...</option>
                       <option value="0">Comum</option>
                       <option value="1">Administrador</option>
                     </select>

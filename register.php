@@ -45,7 +45,7 @@
                 <div class="col-md-6">
                   <div class="form-label-group">
                     <div class="text-center">República residente:</div><br>
-                    <select class="col-md-12" name="id_republica">
+                    <select class="col-md-12 col-md-12 form-control" name="id_republica">
                       <?php
                         while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
                           echo '<option value=' . $linha['id_republica'] . '>' . $linha['nome'] . '</option>';
@@ -105,7 +105,7 @@
                 </div>                
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <select class="col-md-12" name="nivel">
+                    <select class="col-md-12 col-md-12 form-control" name="nivel">
                       <option value="1">Administrador</option>
                       <option value="0">Comum</option>
                     </select>
