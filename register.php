@@ -2,7 +2,17 @@
 <html lang="en">
 
   <head>
+    <?php 
+      include_once './mysql.php';
 
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $sql = $link->prepare("SELECT id_republica, nome FROM republica ORDER BY nome;");
+      
+      $sql->execute();
+    ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +39,29 @@
         <div class="card-header text-center">Registre-se</div>
         <div class="card-body">
           <form method="POST" action="cadastroInt.php">
+            <div class="form-group">
+              <div class="card-header text-center">Dados República</div><br>
+              <div class="form-row">
+                <div class="col-md-6">
+                  <div class="form-label-group">
+                    <div class="text-center">República residente:</div><br>
+                    <select class="col-md-12" name="id_republica">
+                      <?php
+                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                          echo '<option value=' . $linha['id_republica'] . '>' . $linha['nome'] . '</option>';
+                        }
+                      ?>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-label-group medium text-center alert">
+                    Sua república não está cadastradada? <a class="" href="registerRep.php">Cadastre-a</a>.
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
             <div class="form-group">
               <div class="card-header text-center">Dados Pessoais</div><br>
               <div class="form-row">
@@ -63,38 +96,18 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="card-header text-center">Dados República</div><br>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <div class="text-center">República residente:</div><br>
-                    <select class="col-md-12">
-                      <option value="">República 1</option>
-                      <option value="">República 2</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group medium text-center alert">
-                    Sua república não está cadastradada? <a class="" href="registerRep.php">Cadastre-a</a>.
-                  </div>
-                </div>
-              </div>
-              <br>
-            </div>
-            <div class="form-group">
               <div class="card-header text-center">Dados Usuário</div><br>
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group larger text-center">
-                    Usuário:
+                    Nível do Usuário:
                   </div>
                 </div>                
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <select class="col-md-12">
-                      <option value="">Administrador</option>
-                      <option value="">Comum</option>
+                    <select class="col-md-12" name="nivel">
+                      <option value="1">Administrador</option>
+                      <option value="0">Comum</option>
                     </select>
                   </div>
                 </div>

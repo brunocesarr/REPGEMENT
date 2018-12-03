@@ -1,38 +1,3 @@
-<?php
-$msg = '';
-include_once("mysql.php");
-
-  //  Realiza a busca na base de dados
-  $con = new Conexao();
-  $link = $con->conexao();
-
-$nome = $_POST['nome'];
-$ano = $_POST['ano'];
-$username = $_POST['username'];
-$rua = $_POST['rua'];
-$numero = $_POST['numero'];
-$complemento = $_POST['complemento'];
-$bairro = $_POST['bairro'];
-$cidade = $_POST['cidade'];
-$estado = $_POST['estado'];
-$num_integrante = $_POST['num_integrante'];
-
-$sql = "INSERT INTO republica(nome, ano, username, rua, numero, complemento, bairro, cidade, estado,num_integrante) VALUES('$nome', '$ano', '$username', '$rua','$numero','$complemento','$bairro','$cidade','$estado','$num_integrante')";
-$salvar = mysqli_query($con, $sql);
-
-// echo $sql;
-// if($salvar){
-//   $msg = "Usuario cadastrado com sucesso!";
-// }else{
-//   $msg = "Ocorreu um erro no cadastro!";
-// }
-
-//mysqli_affected_rows mostra quantas linhas foram afetadas no banco de dados
-$linhas = mysqli_affected_rows($con);
-
-mysqli_close($conexao);
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -58,48 +23,44 @@ mysqli_close($conexao);
   </head>
 
   <body class="bg-dark">
-    <?php if($msg): ?>
-      <p><?php echo $msg; ?></p>
-    <?php endif; ?>  
     <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Registre-se</div>
         <div class="card-body">
-          <form>
+          <form method="POST" action="./cadastroRep.php">
             <div class="form-group">
               <div class="card-header text-center">Dados</div><br>              
               <div class="form-row">
-                <div class="col-md-10">
+                <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="Nome" name="nome"required="required" autofocus="autofocus">
+                    <input type="text" id="firstName" class="form-control" placeholder="Nome" name="nome" required="required" autofocus="autofocus">
                     <label for="firstName">Nome</label>
                   </div>
                 </div>
-                <div class="col-md-2">
-                  <div class="form-label-group">
-                    <input type="number" id="inputYear" class="form-control" placeholder="Ano" name="ano"required="required" min="0">
-                    <label for="inputYear">Ano</label>
-                  </div>
-                </div>
-              </div>
               </div>
             </div>
-             <div class="form-group">
-               <div class="col-md-6">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-6">
                   <div class="form-label-group">
                     <input type="text" id="inputYear" class="form-control" placeholder="Username" name="username" required="required">
                     <label for="inputYear">Username</label>
                   </div>
                 </div>
-            </div>
-            <div class="form-group">
-               <div class="col-md-4">
+                <div class="col-md-2">
                   <div class="form-label-group">
-                    <input type="number" id="inputYear" class="form-control" placeholder="NumIntegrante" name="numintegrante"required="required" min="0">
+                    <input type="number" id="inputYear" class="form-control" placeholder="Ano" name="ano" required="required" min="0">
+                    <label for="inputYear">Ano</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-label-group">
+                    <input type="number" id="inputYear" class="form-control" placeholder="NumIntegrante" name="num_integrante" required="required" min="0">
                     <label for="inputYear">Nº Integrantes</label>
                   </div>
                 </div>
-            </div>
+              </div>
+            </div>              
             
             <div class="form-group">
               <div class="card-header text-center">Endereço</div><br>
@@ -149,7 +110,7 @@ mysqli_close($conexao);
                 </div>
               </div>
             </div>
-             <input type="submit" value="Registrar República" class="btn btn-primary btn-block">
+             <input type="submit" value="Enviar" class="btn btn-primary btn-block">
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="index.html">Logar</a>

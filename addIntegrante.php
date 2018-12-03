@@ -3,19 +3,6 @@
 
   <head>
     <?php 
-      include_once './mysql.php';
-
-      //  Realiza a busca na base de dados isso
-      $con = new Conexao();
-      $link = $con->conexao();
-
-      
-      $sql = $link->prepare("SELECT id_republica, nome FROM republica ORDER BY nome;");
-      
-      $sql->execute();
-      //  $linha = $sql->fetchObject();
-    ?>
-    <?php 
       /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
        simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
       o caminho para a página principal do site (sistema), burlando assim a obrigação de 
@@ -23,14 +10,32 @@
       então ao verificar que a session não existe a página redireciona o mesmo
        para a index.php.*/
       session_start();
-      if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['senha']) == true))
+      if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['senha']) == true) and (!isset ($_SESSION['id_integrante']) == true) and (!isset ($_SESSION['id_republica']) == true))
       {
+        unset($_SESSION['id_integrante']);
+        unset($_SESSION['id_republica']);
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
+        
         echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.html';</script>";
         }
        
       $logado = $_SESSION['login'];
+    ?>
+    <?php 
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $cod_rep = $_SESSION['id_republica'];
+      
+      $sql = $link->prepare("SELECT id_republica, nome FROM republica WHERE id_republica = $cod_rep;");
+      
+      $sql->execute();
+
+      $linha = $sql->fetch(PDO::FETCH_ASSOC);
     ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -191,6 +196,19 @@
               <br>
               <div class="form-row">
                 <div class="col-md-6">
+                    <label for="inputRep">República Residente</label>
+                    <div class="form-label-group">
+                      <input class="form-control" id="disabledInput" placeholder="Campo desabilitado" disabled="" type="text"/>
+                      <!--  
+                      <?php
+                          $nome = $linha['nome'];
+                          $id_republica = $linha['id_republica'];
+                          echo '<input type="text" id="inputRep" class="form-control" placeholder="' . $nome . '" value="' . $id_republica . '" name="id_republica" required="required" disabled="disabled" class="disable"></input>';
+                        ?>
+                      -->
+                    </div>
+                </div>                
+                <div class="col-md-6">
                     <label for="inputState">Tipo de Usuário</label>                  
                     <div class="form-label-group">
                     <select id="inputState" class="form-control" name="nivel">
@@ -200,19 +218,6 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-md-6">
-                    <label for="inputState">República Residente</label>                  
-                    <div class="form-label-group">
-                    <select id="inputState" class="form-control" name="id_republica">
-                      <option selected>Escolha...</option>
-                      <?php
-                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
-                          echo '<option value=' . $linha['id_republica'] . '>' . $linha['nome'] . '</option>';
-                        }
-                      ?>
-                    </select>
-                  </div>
-                </div>                
               </div>
               <br>
               <input type="submit" value="Registrar Integrante" class="btn btn-primary btn-block">

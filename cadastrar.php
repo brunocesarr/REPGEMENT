@@ -14,7 +14,7 @@
   $nivel = $_POST['nivel'];
   $id_republica = $_POST['id_republica'];
 
-  $sql = $link->prepare("INSERT INTO integrante(nome, sobrenome, data_Nasc, email, username, senha, nivel, id_republica) VALUES(':nome', ':sobrenome', ':data', ':email',':username',':senha',':nivel',':republica')");
+  $sql = $link->prepare("INSERT INTO integrante(nome, sobrenome, data_Nasc, email, username, senha, nivel, id_republica) VALUES(':nome', ':sobrenome', ':data', ':email',':username',':senha',':nivel',':republica');");
   $sql->bindParam(':nome', $nome, PDO::PARAM_STR); 
   $sql->bindParam(':sobrenome', $sobrenome, PDO::PARAM_STR); 
   $sql->bindParam(':data', $data_Nasc, PDO::PARAM_STR); 

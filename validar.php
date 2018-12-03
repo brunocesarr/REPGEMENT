@@ -24,9 +24,13 @@
 		//	Usuário não existe
 		unset ($_SESSION['login']);
   		unset ($_SESSION['senha']);
+  		unset ($_SESSION['id_integrante']);
+  		unset ($_SESSION['id_republica']);
 		echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos.');window.location.href='./index.html';</script>";
         //	header("Location:./index.html");
 	} else {
+        $_SESSION['id_integrante'] = $linha->id_integrante;
+        $_SESSION['id_republica'] = $linha->id_republica;
 		$_SESSION['login'] = $linha->nome;
 		$_SESSION['senha'] = $linha->senha;
 		echo"<script language='javascript' type='text/javascript'>alert('Bem Vindo $linha->nome $linha->sobrenome.');window.location.href='./home.php';</script>";
