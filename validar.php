@@ -18,7 +18,7 @@
 	$sql->bindParam(":senha", $post_senha, PDO::PARAM_STR); 
 	$sql->execute();
 	$linha = $sql->fetchObject();
-
+	
 	//	Verifica o acesso ao usuário e redireciona a página correta
 	if(!$linha){
 		//	Usuário não existe
