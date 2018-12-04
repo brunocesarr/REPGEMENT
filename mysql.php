@@ -9,9 +9,9 @@
 
     function __construct() {
         //  Versão WEB
-        //  $this->link = new PDO("mysql:host=$this->servername;dbname=$this->database;charset=utf8", "$this->username", "$this->password");
+        $this->link = new PDO("mysql:host=$this->servername;dbname=$this->database;charset=utf8", "$this->username", "$this->password");
         //  Versão Local - Bruno
-        $this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB;charset=utf8", "root", "");
+        //  $this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB;charset=utf8", "root", "");
         //  Versão Local - Darlan
         //  $this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB;charset=utf8", "root", "root");
 
