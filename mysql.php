@@ -7,6 +7,8 @@
     private $database = "u667552060_repgm";
     private $password = "host10";
 
+//teste
+
     function __construct() {
         //  Versão WEB
         //  $this->link = new PDO("mysql:host=$this->servername;dbname=$this->database;charset=utf8", "$this->username", "$this->password");
