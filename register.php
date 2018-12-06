@@ -67,13 +67,13 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                    <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus" autocomplete="off">
                     <label for="firstName">Nome</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
+                    <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required" autocomplete="off">
                     <label for="lastName">Sobrenome</label>
                   </div>
                 </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autocomplete="off">
                 <label for="inputEmail">Email</label>
               </div>
             </div>
@@ -89,7 +89,7 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required">
+                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required" autocomplete="off">
                     <label for="inputDate">Data de Nascimento</label>
                   </div>
                 </div>
@@ -116,7 +116,7 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="text" id="inputText" class="form-control" placeholder="Username" required="required">
+                    <input type="text" id="inputText" class="form-control" placeholder="Username" required="required" autocomplete="off">
                     <label for="inputText">Username</label>
                   </div>
                 </div>
@@ -125,16 +125,29 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required" autocomplete="off">
                     <label for="inputPassword">Senha</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required" onkeypress="Verifica()" autocomplete="off">
                     <label for="confirmPassword">Confirme a Senha</label>
                   </div>
                 </div>
+                <script>
+                  function Verifica(){
+                    val1=document.getElementById("inputPassword").value;
+                    val2=document.getElementById("confirmPassword").value;
+                    if(val1==val2){
+                      document.getElementById("inputPassword").style.borderColor="green";
+                      document.getElementById("confirmPassword").style.borderColor="green";
+                    }else{
+                      document.getElementById("inputPassword").style.borderColor="#f00";
+                      document.getElementById("confirmPassword").style.borderColor="#f00";
+                    }
+                  }
+                </script>
               </div>
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Registrar"/>
