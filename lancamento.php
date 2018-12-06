@@ -1,34 +1,3 @@
-<?php
-  include_once("./mysql.php");
-
-  //  Realiza a busca na base de dados
-  $con = new Conexao();
-  $link = $con->conexao();
-
-  $id_tipo = $_POST['id_tipo'];
-  $valor = $_POST['valor'];
-  $data_venc = $_POST['data_venc'];
-  $id_integrante = $_POST['id_integrante'];
-
-  $sql = $link->prepare("INSERT INTO conta(id_tipo, valor, data_venc, id_integrante) VALUES(':tipo', ':valor', ':data', ':integrante');");
-  $sql->bindParam(':tipo', $id_tipo, PDO::PARAM_STR); 
-  $sql->bindParam(':valor', $valor, PDO::PARAM_STR); 
-  $sql->bindParam(':data', $data_venc, PDO::PARAM_STR); 
-  $sql->bindParam(':integrante', $id_integrante, PDO::PARAM_STR); 
-  $sql->execute();
-  $linha = $sql->fetchObject();
-
-  //  Verifica o acesso ao usuário e redireciona a página correta
-  if(!$linha){
-    //  Usuário não existe
-    echo"<script language='javascript' type='text/javascript'>alert('Erro no Lançamento.');window.location.href='./Lançamento.php';</script>";
-        //  header("Location:./index.html");
-  } else {
-    echo"<script language='javascript' type='text/javascript'>alert('Lançamento Efetuado.');window.location.href='./Lançamento.php';</script>";
-  }
-?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -50,6 +19,33 @@
        
       $logado = $_SESSION['login'];
     ?>
+
+
+    <?php 
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $sql = $link->prepare("SELECT id_integrante, nome FROM integrante ORDER BY nome;");
+      
+      $sql->execute();
+    ?>
+
+
+    <?php 
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $sql = $link->prepare("SELECT id_tipo, nome_tipo FROM tipo_conta ORDER BY nome_tipo;");
+      
+      $sql->execute();
+    ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -158,14 +154,21 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Registrar Conta</div>
         <div class="card-body">
-          <form>
+          <form method="POST" action="cadastroConta.php">
             <div class="form-group">
               <div class="card-header text-center">Dados</div><br>
               <div class="form-row">
                 <div class="col-md-12">
+                  <label for="inputState">Selecionar tipo de conta</label> 
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="Nome" name="id_tipo" required="required" autofocus="autofocus">
-                    <label for="firstName">Tipo de Conta</label>
+                    <select id="inputState" class="form-control form-control-lg" name="id_republica">
+                      <option selected disabled="disabled">Escolha...</option>
+                      <?php
+                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                          echo '<option value=' . $linha['id_tipo'] . '>' . $linha['nome_tipo'] . '</option>';
+                        }
+                      ?>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -177,10 +180,20 @@
                     <label for="firstName">Valor da Conta</label>
                   </div>
                 </div>
-                <div class="col-md-6">
+              </div>
+              <br>
+              <div class="form-row">
+                 <div class="col-md-12">
+                  <label for="inputState">Selecionar Integrante</label> 
                   <div class="form-label-group">
-                    <input type="number" id="inputId" class="form-control" placeholder="Id_integrante" name="id_integrante" required="required" autofocus="autofocus">
-                    <label for="firstName">Codigo do Integrante</label>
+                    <select id="inputState" class="form-control form-control-lg" name="id_republica">
+                      <option selected disabled="disabled">Escolha...</option>
+                      <?php
+                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                          echo '<option value=' . $linha['id_integrante'] . '>' . $linha['nome'] . '</option>';
+                        }
+                      ?>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -194,7 +207,7 @@
                 </div>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="register.html">Registrar Conta</a>
+            <input type="submit" value="Registrar" class="btn btn-primary btn-block">
           </form>
         </div>
       </div>
