@@ -22,6 +22,7 @@
        
       $logado = $_SESSION['login'];
     ?>
+
     <?php 
       include_once './mysql.php';
 
@@ -29,14 +30,11 @@
       $con = new Conexao();
       $link = $con->conexao();
 
-      $cod_rep = $_SESSION['id_republica'];
-      
-      $sql = $link->prepare("SELECT id_republica, nome FROM republica WHERE id_republica = $cod_rep;");
+      $sql = $link->prepare("SELECT id_republica, nome FROM republica ORDER BY nome;");
       
       $sql->execute();
-
-      $linha = $sql->fetch(PDO::FETCH_ASSOC);
     ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -59,7 +57,7 @@
 
   </head>
 
-  <body id="page-top">
+ <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -87,7 +85,6 @@
         </form>
 
     </nav>
-
 
     <div id="wrapper">
 
@@ -145,7 +142,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Adicionar Integrante</div>
         <div class="card-body">
-          <form method="POST" action="cadastrar.php">
+          <form method="POST" action="cadastroIntegrante.php">
             <div class="form-group">
               <div class="card-header text-center">Dados</div><br>
               <div class="form-row">
@@ -166,17 +163,16 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required="required" autofocus="autofocus">
-                    <label for="firstName">E-mail</label>
+                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" name="data_Nasc" required="required">
+                    <label for="inputDate">Data de Nascimento</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required">
-                    <label for="inputDate">Data de Nascimento</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required="required" autofocus="autofocus">
+                    <label for="firstName">E-mail</label>
                   </div>
                 </div>
-              </div>
             </div>
             <br>
             <div class="form-row">
@@ -196,14 +192,7 @@
               <br>
               <div class="form-row">
                 <div class="col-md-6">
-                    <label for="inputRep">República Residente</label>
-                    <div class="form-label-group">
-                      <input class="form-control" id="disabledInput" placeholder="Campo desabilitado" readonly type="text"/>
-                      <input type=hidden name=id_republica value="República Residente">
-                    </div>
-                </div>                
-                <div class="col-md-6">
-                    <label for="inputState">Tipo de Usuário</label>                  
+                   <label for="inputState">Tipo de Usuário</label>                  
                     <div class="form-label-group">
                     <select id="inputState" class="form-control form-control-lg" name="nivel">
                       <option selected disabled="disabled">Escolha...</option>
@@ -212,9 +201,22 @@
                     </select>
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <label for="inputState">Selecionar República</label> 
+                  <div class="form-label-group">
+                    <select id="inputState" class="form-control form-control-lg" name="id_republica">
+                      <option selected disabled="disabled">Escolha...</option>
+                      <?php
+                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                          echo '<option value=' . $linha['id_republica'] . '>' . $linha['nome'] . '</option>';
+                        }
+                      ?>
+                    </select>
+                  </div>
+                </div>
               </div>
-              <br>
-              <input type="submit" value="Registrar Integrante" class="btn btn-primary btn-block">
+             <br>
+            <input type="submit" value="Registrar Integrante" class="btn btn-primary btn-block">
           </form>
         </div>
       </div>
