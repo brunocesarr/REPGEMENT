@@ -38,7 +38,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Registre-se</div>
         <div class="card-body">
-          <form method="POST" action="cadastrar.php">
+          <form method="POST" action="./cadastrar.php" data-toggle="validator">
             <div class="form-group">
               <div class="card-header text-center">Dados República</div><br>
               <div class="form-row">
@@ -67,13 +67,13 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus" autocomplete="off">
-                    <label for="firstName">Nome</label>
+                    <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus" autocomplete="off" name="nome">
+                    <div class="help-block with-errors"></div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required" autocomplete="off">
+                    <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required" autocomplete="off" name="sobrenome">
                     <label for="lastName">Sobrenome</label>
                   </div>
                 </div>
@@ -81,7 +81,7 @@
             </div>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autocomplete="off">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autocomplete="off" name="email">
                 <label for="inputEmail">Email</label>
               </div>
             </div>
@@ -89,7 +89,7 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required" autocomplete="off">
+                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required" autocomplete="off" name="data_Nasc">
                     <label for="inputDate">Data de Nascimento</label>
                   </div>
                 </div>
@@ -116,7 +116,7 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="text" id="inputText" class="form-control" placeholder="Username" required="required" autocomplete="off">
+                    <input type="text" id="inputText" class="form-control" placeholder="Username" required="required" autocomplete="off" name="username">
                     <label for="inputText">Username</label>
                   </div>
                 </div>
@@ -125,7 +125,7 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required" autocomplete="off">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required" autocomplete="off" name="senha">
                     <label for="inputPassword">Senha</label>
                   </div>
                 </div>
@@ -150,7 +150,7 @@
                 </script>
               </div>
             </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Registrar"/>
+            <input type="submit" class="btn btn-primary btn-block" value="Registrar" name="Submit"/>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="index.html">Logar</a>
@@ -166,6 +166,9 @@
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Script de validação de formulário Boostrap -->
+    <script src="js/validator.min.js"></script>
 
   </body>
 

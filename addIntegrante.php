@@ -145,19 +145,19 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Adicionar Integrante</div>
         <div class="card-body">
-          <form method="POST" action="cadastrar.php">
+          <form method="POST" action="./cadastrar.php">
             <div class="form-group">
               <div class="card-header text-center">Dados</div><br>
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstName" class="form-control" placeholder="Nome" name="nome" required="required" autofocus="autofocus">
+                    <input type="text" id="firstName" class="form-control" placeholder="Nome" required="required" autofocus="autofocus" name="nome">
                     <label for="firstName">Nome</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstSobrenome" class="form-control" placeholder="Sobrenome" name="sobrenome" required="required" autofocus="autofocus">
+                    <input type="text" id="firstSobrenome" class="form-control" placeholder="Sobrenome" required="required" autofocus="autofocus" name="sobrenome">
                     <label for="firstName">Sobrenome</label>
                   </div>
                 </div>
@@ -166,13 +166,13 @@
               <div class="form-row">
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email" required="required" autofocus="autofocus">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="required" autofocus="autofocus" name="email">
                     <label for="firstName">E-mail</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required">
+                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required" name="data_Nasc">
                     <label for="inputDate">Data de Nascimento</label>
                   </div>
                 </div>
@@ -182,13 +182,13 @@
             <div class="form-row">
               <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="text" id="firstUsername" class="form-control" placeholder="Username" name="username" required="required" autofocus="autofocus">
+                    <input type="text" id="firstUsername" class="form-control" placeholder="Username" required="required" autofocus="autofocus" name="username">
                     <label for="firstUsername">Username</label>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="inputSenha" class="form-control" placeholder="Senha" name="senha" required="required">
+                    <input type="password" id="inputSenha" class="form-control" placeholder="Senha" required="required" name="senha">
                     <label for="inputSenha">Senha</label>
                   </div>
                 </div>    
@@ -198,8 +198,7 @@
                 <div class="col-md-6">
                     <label for="inputRep">República Residente</label>
                     <div class="form-label-group">
-                      <input class="form-control" id="disabledInput" placeholder="Campo desabilitado" readonly type="text"/>
-                      <input type=hidden name=id_republica value="República Residente">
+                        <input class="form-control" id="disabledInput" placeholder="<?php echo $linha['nome']; ?>" readonly type="text" value="<?php echo $linha['id_republica']; ?>" name="id_republica"/>
                     </div>
                 </div>                
                 <div class="col-md-6">
