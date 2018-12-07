@@ -19,6 +19,17 @@
        
       $logado = $_SESSION['login'];
     ?>
+        <?php 
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $sql = $link->prepare("SELECT id_conta FROM conta ORDER BY id_conta;");
+      
+      $sql->execute();
+    ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -130,8 +141,15 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="number" id="firstCodigoInt" class="form-control" placeholder="Codigo do Integrante" name="codigoInt" required="required" autofocus="autofocus">
+                    <select class="col-md-12 col-md-12 form-control" name="id_tipo">
                     <label for="firstCodigoInt">Codigo da Conta</label>
+                      <option selected disabled="disabled">Selecione...</option>
+                      <?php
+                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                          echo '<option value=' . $linha['id_conta'] . '>' . $linha['id_conta'] . '</option>';
+                        }
+                      ?>
+                    </select>
                   </div>
                 </div>
               </div>

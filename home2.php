@@ -18,23 +18,6 @@
         }
        
       $logado = $_SESSION['login'];
-      $id_rep = $_SESSION['id_republica'];
-    ?>
-    <?php 
-      include_once './mysql.php';
-
-      //  Realiza a busca na base de dados isso
-      $con = new Conexao();
-      $link = $con->conexao();
-
-      $sql = $link->prepare("SELECT id_tipo, nome_tipo FROM tipo_conta ORDER BY nome_tipo;");
-      
-      $sql->execute();
-
-
-      $sql1 = $link->prepare("SELECT id_integrante, nome FROM integrante WHERE id_republica = $id_rep ORDER BY nome;");
-      
-      $sql1->execute();
     ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,7 +25,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REPGEMENT - Lançamentos</title>
+    <title>REPGEMENT - Painel</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -77,7 +60,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#"> </a>
-            <a class="dropdown-item" href="#"> <?php echo $logado ?></a>
+            <a class="dropdown-item" href="#"><?php echo $logado ?></a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
           </div>
@@ -104,12 +87,12 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Contas:</h6>
-            <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
-            <a class="dropdown-item" href="divida.php">Dívidas</a>
+            <a class="dropdown-item" href="#">Lançamentos</a>
+            <a class="dropdown-item" href="#">Dívidas</a>
             <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">República:</h6>
-            <a class="dropdown-item" href="totalgasto.php">Gasto Total</a>
-            <a class="dropdown-item" href="integrante.php">Integrantes</a>
+            <a class="dropdown-item" href="#">Gasto Total</a>
+            <a class="dropdown-item" href="#">Integrantes</a>
           </div>
         </li>
         <li class="nav-item">
@@ -123,7 +106,7 @@
             <span>Tabelas</span></a>
         </li>
       </ul>
-      
+
       <div id="content-wrapper">
 
         <div class="container-fluid">
@@ -131,79 +114,157 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.html">Painel de Controle</a>
+              <a href="#">Painel de controle</a>
             </li>
-            <li class="breadcrumb-item active">Lançamentos</li>
+            <li class="breadcrumb-item active">Visão global</li>
           </ol>
 
-          <!-- Page Content -->
-          <h1>Lançamentos</h1>
-          <hr>
-
-          	<div class="container">
-      <div class="card card-register mx-auto mt-5">
-        <div class="card-header text-center">Registrar Conta</div>
-        <div class="card-body">
-          <form action="lancar.php" method="POST">
-            <div class="form-group">
-              <div class="card-header text-center">Dados</div><br>
-              <div class="form-row">
-                <div class="col-md-12">
-                  <div class="form-label-group">
-                    <label for="conta">Tipo de Conta</label>
-                    <select class="col-md-12 col-md-12 form-control" name="id_tipo" id="conta">
-                      <option selected disabled="disabled">Selecione...</option>
-                      <?php
-                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
-                          echo '<option value=' . $linha['id_tipo'] . '>' . $linha['nome_tipo'] . '</option>';
-                        }
-                      ?>
-                    </select>
+          <!-- Icon Cards-->
+          <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-comments"></i>
                   </div>
+                  <div class="mr-5">26 Novas mensagens!</div>
                 </div>
-              </div>
-              <br>
-              <div class="form-row">
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <label for="inputValor">Valor da Conta</label>
-                    <input type="text" id="inputValor" class="form-control" placeholder="Valor" name="valor" required="required" autofocus="autofocus"/>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-label-group">
-                    <label for="id_int">Codigo do Integrante</label>
-                    <select class="col-md-12 col-md-12 form-control form-control-lg" name="id_integrante" id="id_int">
-                      <option selected disabled="disabled">Selecione...</option>
-                      <?php
-                        while ($linha = $sql1->fetch(PDO::FETCH_ASSOC)) {
-                          echo '<option value=' . $linha['id_integrante'] . '>' . $linha['nome'] . '</option>';
-                        }
-                      ?>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <div class="form-row">
-                <div class="col-md-12">
-                  <div class="form-label-group">
-                    <input type="date" id="inputValor" class="form-control" placeholder="Data" name="data_venc" required="required" autofocus="autofocus" id="data">
-                    <label for="data">Data de Vencimento</label>
-                  </div>
-                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">Ver detalhes</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
               </div>
             </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Registrar Conta" name="registraConta" />
-          </form>
-        </div>
-      </div>
-    </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white bg-warning o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-list"></i>
+                  </div>
+                  <div class="mr-5">Novas Tarefas!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">Ver detalhes!</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white bg-success o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
+                  </div>
+                  <div class="mr-5">Novas Tarefas!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">Ver detalhes</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card text-white bg-danger o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fas fa-fw fa-life-ring"></i>
+                  </div>
+                  <div class="mr-5">Novas tarefas!</div>
+                </div>
+                <a class="card-footer text-white clearfix small z-1" href="#">
+                  <span class="float-left">Ver detalhes</span>
+                  <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Area Chart Example-->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-chart-area"></i>
+              Exemplo de gráfico de área
+            </div>
+            <div class="card-body">
+              <canvas id="myAreaChart" width="100%" height="30"></canvas>
+            </div>
+            <div class="card-footer small text-muted">Atualizado ontem às 23h59</div>
+          </div>
+
+          <!-- DataTables Example -->
+          <div class="card mb-3">
+            <div class="card-header">
+              <i class="fas fa-table"></i>
+              Exemplo de Tabela</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Data</th>
+                      <th>Descrição da Conta</th>
+                      <th>Devedor</th>
+                      <th>Valor</th>
+                      </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Data</th>
+                      <th>Descrição da Conta</th>
+                      <th>Devedor</th>
+                      <th>Valor</th>
+                      </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr>
+                      <td>2011/04/25</td>
+                      <td>System Architect</td>
+                      <td>Tiger Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>2011/04/25</td>
+                      <td>System Architect</td>
+                      <td>Tiger Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>2011/04/25</td>
+                      <td>System Architect</td>
+                      <td>Tiger Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>2011/04/25</td>
+                      <td>System Architect</td>
+                      <td>Tiger Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                    <tr>
+                      <td>2011/04/26</td>
+                      <td>System Architect</td>
+                      <td>Riy Nixon</td>
+                      <td>$320,800</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Atualizado ontem às 23:59</div>
+          </div>
 
         </div>
         <!-- /.container-fluid -->
 
-         <!-- Sticky Footer -->
+        <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
@@ -260,8 +321,6 @@
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
-
-    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>           
 
   </body>
 

@@ -213,7 +213,7 @@
                 </div>
               </div>
               <br>
-              <input type="submit" value="Registrar Integrante" class="btn btn-primary btn-block">
+              <input type="submit" value="Registrar Integrante" class="btn btn-primary btn-block" name="addIntegrante">
           </form>
         </div>
       </div>

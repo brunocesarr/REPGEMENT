@@ -131,14 +131,23 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required" onkeypress="Verifica()" autocomplete="off">
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required" onkeypress="Verifica(this)" autocomplete="off">
                     <label for="confirmPassword">Confirme a Senha</label>
                   </div>
                 </div>
                 <script>
-                  function Verifica(){
-                    val1=document.getElementById("inputPassword").value;
-                    val2=document.getElementById("confirmPassword").value;
+                  function Verifica(input){
+                    if (input.value == document.getElementById('confirmPassword').value) {
+                      document.getElementById("inputPassword").style.borderColor="green";
+                      document.getElementById("confirmPassword").style.borderColor="green";
+                      input.setCustomValidity('The two email addresses must match.');
+                    } else {
+                      // input is valid -- reset the error message
+                      document.getElementById("inputPassword").style.borderColor="#f00";
+                      document.getElementById("confirmPassword").style.borderColor="#f00";
+                      input.setCustomValidity('');
+                    }
+                  /*
                     if(val1==val2){
                       document.getElementById("inputPassword").style.borderColor="green";
                       document.getElementById("confirmPassword").style.borderColor="green";
@@ -146,11 +155,12 @@
                       document.getElementById("inputPassword").style.borderColor="#f00";
                       document.getElementById("confirmPassword").style.borderColor="#f00";
                     }
+                    */
                   }
                 </script>
               </div>
             </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Registrar" name="Submit"/>
+            <input type="submit" class="btn btn-primary btn-block" value="Registrar" name="cadastrar"/>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="index.html">Logar</a>
