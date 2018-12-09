@@ -2,11 +2,11 @@
 <html lang="pt-br">
 
   <head>
-    <?php 
+    <?php
       /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
-       simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
-      o caminho para a página principal do site (sistema), burlando assim a obrigação de 
-      fazer um login, com isso se ele não estiver feito o login não será criado a session, 
+       simplesmente não fazer o login e digitar na barra de endereço do seu navegador
+      o caminho para a página principal do site (sistema), burlando assim a obrigação de
+      fazer um login, com isso se ele não estiver feito o login não será criado a session,
       então ao verificar que a session não existe a página redireciona o mesmo
        para a index.php.*/
       session_start();
@@ -14,11 +14,24 @@
       {
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
-        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.html';</script>";
+        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.php';</script>";
         }
-       
+
       $logado = $_SESSION['login'];
+      $id_rep = $_SESSION['id_republica'];
     ?>
+    <?php
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $sql = $link->prepare("SELECT id_integrante, nome FROM integrante WHERE id_republica = $id_rep ORDER BY nome;");
+
+      $sql->execute();
+    ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -119,27 +132,121 @@
               <a href="integrante.html">Integrantes</a>
             </li>
             <li class="breadcrumb-item active">Alterar integrante</li>
-          </ol>         
+          </ol>
 
-          <div class="container">
+    <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Alterar integrante</div>
         <div class="card-body">
-          <form action="POST">
+          <form name="formulario" method="POST">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <input type="number" id="firstCodigoInt" class="form-control" placeholder="Codigo do Integrante" name="codigoInt" required="required" autofocus="autofocus">
-                    <label for="firstCodigoInt">Codigo do Integrante</label>
+                    <label for="firstCodigoInt">Integrante</label>
+                    <select class="col-md-12 col-md-12 form-control" name="integrante" id="id_integrante">
+                      <option selected disabled="disabled">Selecione...</option>
+                      <?php
+                        while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                          echo '<option value=' . $linha['id_integrante'] . '>' . $linha['nome'] . '</option>';
+                        }
+                      ?>
+                    </select>
                   </div>
                 </div>
               </div>
-              <br>
-              <input type="submit" value="Pesquisar Integrante" class="btn btn-primary btn-block">
+            </div>
+            <input type="submit" value="Pesquisar Integrante" class="btn btn-primary btn-block" id="pesquisar" onclick="return mostra()" name="submit">
           </form>
         </div>
       </div>
+    </div>
+
+
+          
+    <?php
+
+      if(isset($_REQUEST['submit']) and isset($_POST['integrante'])){
+
+        echo 'Hello';
+      }
+    ?>
+    <script type="text/javascript">
+      function mostrar(){
+        document.getElementById('formulario').innerHTML = '<form method="post" action="arquivo.php"><input type="text" name="nome" placeholder="nome"/><input type="text" name="email" placeholder="email"/><input type="text" name="idade" placeholder="idade"/><input type="submit" value="enviar"/></form>';
+      }
+    </script>
+
+    <div class="container" id="">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header text-center">Alterar Integrante</div>
+            <div class="card-body">
+                <form method="POST" action="./alterar.php">
+                    <div class="form-group">
+                        <div class="card-header text-center">Dados</div><br>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="text" id="firstName" class="form-control" placeholder="Nome" required="required" autofocus="autofocus" name="nome">
+                                    <label for="firstName">Nome</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="text" id="firstSobrenome" class="form-control" placeholder="Sobrenome" required="required" autofocus="autofocus" name="sobrenome">
+                                    <label for="firstName">Sobrenome</label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="required" autofocus="autofocus" name="email">
+                                    <label for="firstName">E-mail</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required" name="data_Nasc">
+                                    <label for="inputDate">Data de Nascimento</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="firstUsername" class="form-control" placeholder="Username" required="required" autofocus="autofocus" name="username">
+                                <label for="firstUsername">Username</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="password" id="inputSenha" class="form-control" placeholder="Senha" required="required" name="senha">
+                                <label for="inputSenha">Senha</label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <label for="inputState">Tipo de Usuário</label>
+                            <div class="form-label-group">
+                                <select id="inputState" class="form-control form-control-lg" name="nivel">
+                                    <option selected disabled="disabled">Escolha...</option>
+                                    <option value="0">Comum</option>
+                                    <option value="1">Administrador</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" value="Alterar Integrante" class="btn btn-primary btn-block" name="alterIntegrante">
+                </form>
+            </div>
+        </div>
     </div>
 
          <!-- Sticky Footer -->

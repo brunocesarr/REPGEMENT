@@ -14,7 +14,7 @@
       {
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
-        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.html';</script>";
+        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.php';</script>";
         }
        
       $logado = $_SESSION['login'];

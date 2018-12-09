@@ -14,7 +14,7 @@
       {
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
-        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.html';</script>";
+        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.php';</script>";
         }
        
       $logado = $_SESSION['login'];
@@ -165,9 +165,9 @@
               <br>
               <div class="form-row">
                 <div class="col-md-6">
+                  <!--<label for="inputValor">Valor da Conta</label>-->
                   <div class="form-label-group">
-                    <label for="inputValor">Valor da Conta</label>
-                    <input type="text" id="inputValor" class="form-control" placeholder="Valor" name="valor" required="required" autofocus="autofocus"/>
+                    <input type="number" pattern="^\d{4}-\d{3}-\d{4}$" id="inputValor" class="form-control" placeholder="Valor" name="valor" required="required" autofocus="autofocus"/>
                   </div>
                 </div>
                 <div class="col-md-6">

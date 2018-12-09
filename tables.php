@@ -16,7 +16,7 @@
         unset ($_SESSION['senha']);
         unset ($_SESSION['id_integrante']);
         unset ($_SESSION['id_republica']);
-        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.html';</script>";
+        echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.php';</script>";
         }
        
       $logado = $_SESSION['login'];
