@@ -18,15 +18,6 @@
   $link->beginTransaction();
 
   $sql = $link->prepare("INSERT INTO integrante(nome, sobrenome, data_Nasc, email, username, senha, nivel, id_republica) VALUES('$nome', '$sobrenome', '$data', '$email','$username','$senha','$nivel', '$id_republica');");
-  
-  $sql->bindParam(":nome", $nome, PDO::PARAM_STR); 
-  $sql->bindParam(":sobrenome", $sobrenome, PDO::PARAM_STR); 
-  $sql->bindParam(":data", $data, PDO::PARAM_STR); 
-  $sql->bindParam(":email", $email, PDO::PARAM_STR); 
-  $sql->bindParam(":username", $username, PDO::PARAM_STR); 
-  $sql->bindParam(":senha", $senha, PDO::PARAM_STR); 
-  $sql->bindParam(":nivel", $nivel, PDO::PARAM_STR);
-  $sql->bindParam(":republica", $id_republica, PDO::PARAM_STR); 
 
   //  Verifica o acesso ao usuário e redireciona a página correta
   if(!$sql->execute()){

@@ -15,7 +15,7 @@
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
         echo"<script language='javascript' type='text/javascript'>alert('Faça o login primeiro!');window.location.href='./index.php';</script>";
-        }
+      }
 
       $logado = $_SESSION['login'];
       $id_rep = $_SESSION['id_republica'];
@@ -138,7 +138,7 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Alterar integrante</div>
         <div class="card-body">
-          <form name="formulario" method="POST">
+          <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>" name="form1">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
@@ -156,45 +156,47 @@
                 </div>
               </div>
             </div>
-            <input type="submit" value="Pesquisar Integrante" class="btn btn-primary btn-block" id="pesquisar" onclick="return mostra()" name="submit">
+            <button type="submit" class="btn btn-primary btn-block" id="pesquisar" onclick="mostra()" name="submit">Pesquisar</button>
           </form>
         </div>
       </div>
     </div>
 
-
-          
     <?php
+      if(isset($_POST["submit"])){
+        $cod = $_POST['integrante'];
 
-      if(isset($_REQUEST['submit']) and isset($_POST['integrante'])){
+        if(empty($cod) || ($cod=="Selecione...")) {
+          echo "<script language='javascript' type='text/javascript'>alert('Selecione uma opção!');</script>";
+        } else {
+          echo "<script language='javascript' type='text/javascript'> document.getElementById('formulario').style.display = 'block';</script>";
 
-        echo 'Hello';
+          $sql = $link->prepare("SELECT * FROM integrante i WHERE id_integrante = $cod LIMIT 1;");
+          $sql->execute();
+          $linha = $sql->fetch(PDO::FETCH_ASSOC);
+        }
       }
     ?>
-    <script type="text/javascript">
-      function mostrar(){
-        document.getElementById('formulario').innerHTML = '<form method="post" action="arquivo.php"><input type="text" name="nome" placeholder="nome"/><input type="text" name="email" placeholder="email"/><input type="text" name="idade" placeholder="idade"/><input type="submit" value="enviar"/></form>';
-      }
-    </script>
-
-    <div class="container" id="">
+         
+    
+    <div class="container" id="formulario" style="display: block;">
         <div class="card card-register mx-auto mt-5">
             <div class="card-header text-center">Alterar Integrante</div>
             <div class="card-body">
-                <form method="POST" action="./alterar.php">
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
                     <div class="form-group">
                         <div class="card-header text-center">Dados</div><br>
                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="form-label-group">
-                                    <input type="text" id="firstName" class="form-control" placeholder="Nome" required="required" autofocus="autofocus" name="nome">
+                                    <input type="text" id="firstName" class="form-control" placeholder="Nome" required="required" autofocus="autofocus" name="nome" value="<?php echo $linha['nome']; ?>">
                                     <label for="firstName">Nome</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-label-group">
-                                    <input type="text" id="firstSobrenome" class="form-control" placeholder="Sobrenome" required="required" autofocus="autofocus" name="sobrenome">
-                                    <label for="firstName">Sobrenome</label>
+                                    <input type="text" id="Sobrenome" class="form-control" placeholder="Sobrenome" required="required" autofocus="autofocus" name="sobrenome" value="<?php echo $linha['sobrenome']; ?>">
+                                    <label for="Sobrenome">Sobrenome</label>
                                 </div>
                             </div>
                         </div>
@@ -202,13 +204,13 @@
                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="required" autofocus="autofocus" name="email">
+                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="required" autofocus="autofocus" name="email" value="<?php echo $linha['email']; ?>">
                                     <label for="firstName">E-mail</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-label-group">
-                                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required" name="data_Nasc">
+                                    <input type="date" id="inputDate" class="form-control" placeholder="Data de Nascimento" required="required" name="data_Nasc" value="<?php echo $linha['data_Nasc']; ?>">
                                     <label for="inputDate">Data de Nascimento</label>
                                 </div>
                             </div>
@@ -218,36 +220,44 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" id="firstUsername" class="form-control" placeholder="Username" required="required" autofocus="autofocus" name="username">
+                                <input type="text" id="firstUsername" class="form-control" placeholder="Username" required="required" autofocus="autofocus" name="username" value="<?php echo $linha['username']; ?>">
                                 <label for="firstUsername">Username</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="password" id="inputSenha" class="form-control" placeholder="Senha" required="required" name="senha">
+                                <input type="password" id="inputSenha" class="form-control" placeholder="Senha" required="required" name="senha" value="<?php echo $linha['senha']; ?>">
                                 <label for="inputSenha">Senha</label>
                             </div>
                         </div>
                     </div>
                     <br>
-                    <div class="form-row">
-                        <div class="col-md-12">
-                            <label for="inputState">Tipo de Usuário</label>
-                            <div class="form-label-group">
-                                <select id="inputState" class="form-control form-control-lg" name="nivel">
-                                    <option selected disabled="disabled">Escolha...</option>
-                                    <option value="0">Comum</option>
-                                    <option value="1">Administrador</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <input type="submit" value="Alterar Integrante" class="btn btn-primary btn-block" name="alterIntegrante">
+                    <button type="submit" class="btn btn-primary btn-block" name="alterIntegrante">Alterar Integrante</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <?php
+      if(isset($_POST["alterIntegrante"])){
+        $cod = $linha['id_integrante'];
+        $nome = ucfirst(strtolower($_POST['nome']));
+        $sobrenome = ucfirst(strtolower($_POST['sobrenome']));
+        $data_Nasc = new DateTime($_POST['data_Nasc']);
+        $data = $data_Nasc->format('Y-m-d');
+        $email = $_POST['email'];
+        $username = $_POST['username'];
+        $senha = $_POST['senha'];
+        
+        $sql1 = $link->prepare("UPDATE integrante SET `nome` = '$nome', `sobrenome` = '$sobrenome', `data_Nasc` = '$data', `email` = '$email', `username` = '$username', `senha` = '$senha' WHERE `integrante`.`id_integrante` = '$cod';");
+        
+        if($sql1->execute()){
+          echo "<script language='javascript' type='text/javascript'>alert('Alteração Efetuada!');window.location.href='./alteraIntegrante.php';</script>";
+        } else {
+          echo "<script language='javascript' type='text/javascript'>alert('Error na Alteração!');</script>";
+        }
+      } 
+    ?>
 
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
