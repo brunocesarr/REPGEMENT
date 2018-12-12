@@ -223,7 +223,7 @@
                               <div class="input-group-prepend">
                                 <span class="input-group-text">R$</span>
                               </div>
-                              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="currency"  minlength="4" name="valor" required="required" autofocus="autofocus" value="<?php echo $linha['valor']; ?>"/>
+                              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="currency"  minlength="4" name="valor" required="required" autofocus="autofocus" value="0.00"/>
                               <script type="text/javascript">$("#currency").maskMoney({thousands:'.', decimal:',', allowZero:true, suffix: ''});</script>
                             </div>
                           </div>
