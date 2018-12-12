@@ -116,7 +116,7 @@
               <a href="home.php">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="divida.php">Dividas</a>
+              <a href="divida.php">Contas</a>
             </li>
             <li class="breadcrumb-item active">Consultar Divida</li>
           </ol>         
