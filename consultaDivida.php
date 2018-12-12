@@ -23,14 +23,15 @@
     <?php
       include_once './mysql.php';
 
+      date_default_timezone_set('America/Sao_Paulo');
+
       //  Realiza a busca na base de dados isso
       $con = new Conexao();
       $link = $con->conexao();
 
       $id_rep = $_SESSION['id_conta'];
 
-      $sql = $link->prepare("SELECT id_conta FROM conta;");
-
+      $sql = $link->prepare("SELECT c.id_conta, t.nome_tipo, c.valor, c.data_venc FROM conta c, tipo_conta t WHERE t.id_tipo = c.id_tipo;");
       $sql->execute();
     ?>
 
@@ -153,7 +154,7 @@
                             <option selected disabled="disabled">Selecione...</option>
                             <?php
                               while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
-                                echo '<option value=' . $linha['id_conta'] . '>' . $linha['id_conta'] . '</option>';
+                                echo '<option value=' . $linha['id_conta'] . '>' . $linha['data_venc'] . ' - ' . $linha['nome_tipo'] . '</option>';
                               }
                             ?>
                           </select>
@@ -175,11 +176,8 @@
               if(empty($cod) || ($cod=="Selecione...")) {
                 echo "<script language='javascript' type='text/javascript'>alert('Selecione uma opção!');</script>";
               } else {
-                date_default_timezone_set('America/Sao_Paulo');
-
-                $sql = $link->prepare("SELECT * FROM conta WHERE id_conta = $cod LIMIT 1;");
+                $sql = $link->prepare("SELECT c.id_conta, t.nome_tipo, c.valor, c.data_venc FROM conta c, tipo_conta t WHERE c.id_conta = $cod AND t.id_tipo = c.id_tipo;");
                 $sql->execute();
-                $linha = $sql->fetch(PDO::FETCH_ASSOC);
           ?>
           <div class="container">
           <div class="card mb-3">
@@ -198,11 +196,24 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><?php echo $linha['id_tipo']; ?></td>
-                          <td><?php echo $linha['valor']; ?></td>
-                          <td><?php echo $linha['data_venc']; ?></td>
-                        </tr>
+                        <?php while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
+                          <tr>
+                            <td><?php echo $linha['nome_tipo']; ?></td>
+                            <td>
+                              <?php 
+                              $valor = number_format($linha['valor'], 2, ',', '.');
+                              echo $valor; 
+                              ?>
+                            </td>
+                            <td>
+                              <?php
+                              $data_Nasc = new DateTime($linha['data_venc']);
+                              $data = $data_Nasc->format('d/m/Y'); 
+                              echo $data; 
+                              ?>
+                            </td>
+                          </tr>
+                        <?php } ?>
                       </tbody>
                     </table>
                   </div>

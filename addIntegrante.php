@@ -214,14 +214,11 @@
                                     </div>
                                     <br>
                                     <div class="form-row">
-                                        <!--
                                         <div class="col-md-6">
-                                            <label for="inputRep">República Residente</label>
                                             <div class="form-label-group">
-                                                <input class="form-control" id="disabledInput" placeholder="<?php echo $linha['nome']; ?>" readonly type="text" value="<?php echo $linha['id_republica']; ?>" name="id_republica"/>
+                                                <input type="hidden" class="form-control" id="disabledInput" placeholder="id_republica" value="<?php echo $linha['id_republica']; ?>" name="id_republica"/>
                                             </div>
                                         </div>
-                                        -->                
                                         <div class="col-md-12">
                                             <label for="inputState">Tipo de Usuário</label>                  
                                             <div class="form-label-group">
