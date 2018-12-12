@@ -135,6 +135,10 @@
             <li class="breadcrumb-item active">Consultar contas</li>
           </ol>         
 
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Entre com o identificador da dívida para que em seguida possa ser realizado o processo de consulta nas dívidas existentes. 
+          </div>
+
           <div class="container">
             <div class="card card-register mx-auto mt-5">
               <div class="card-header text-center">Consultar contas</div>
@@ -190,9 +194,9 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>Tipo de conta</th>
-                          <th>Valor da conta R$</th>
-                          <th>Data de vencimento da conta</th>
+                          <th>Tipo de divida</th>
+                          <th>Valor da divida R$</th>
+                          <th>Data de vencimento da divida</th>
                         </tr>
                       </thead>
                       <tbody>

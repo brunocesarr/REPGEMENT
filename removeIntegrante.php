@@ -135,6 +135,10 @@
             <li class="breadcrumb-item active">Remover integrante</li>
           </ol>         
 
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Entre com o nome do integrante para que em seguida possa ser realizado o processo de remoção do integrante selecionado.
+          </div>
+
           <div class="container">
             <div class="card card-register mx-auto mt-5">
               <div class="card-header text-center">Remover integrante</div>

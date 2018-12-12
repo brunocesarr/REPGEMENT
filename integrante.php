@@ -120,10 +120,13 @@
           </ol>
 
           <!-- Page Content -->
-          <h1>Gestão de integrantes</h1>
+          <h3>Gestão de integrantes</h3>
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Realize a gestão de integrantes de uma república de forma fácil e rápida. Com o repgement adicionar, alterar, consultar e remover integrantes pode ser feito em apenas um clique. 
+          </div>
           <hr>
-
-                  <div class="container">
+          
+      <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Opções</div>
         <div class="card-body">
