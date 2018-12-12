@@ -2,7 +2,8 @@
 <html lang="pt-br">
 
   <head>
-    <?php 
+    <?php
+      error_reporting(0); 
       /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
        simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
       o caminho para a página principal do site (sistema), burlando assim a obrigação de 
@@ -19,13 +20,27 @@
        
       $logado = $_SESSION['login'];
     ?>
+    <?php
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $id_rep = $_SESSION['id_conta'];
+
+      $sql = $link->prepare("SELECT id_conta FROM conta;");
+
+      $sql->execute();
+    ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REPGEMENT - consulta</title>
+    <title>REPGEMENT - remover</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +56,7 @@
 
   </head>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
       <a class="navbar-brand mr-1" href="home.php">REPGEMENT</a>
 
@@ -50,22 +65,21 @@
       </button>
 
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#"> </a>
-            <a class="dropdown-item" href="#"><?php echo $logado ?> </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
-          </div>
-        </li>
-      </ul>
-        </form>
-
+        <!-- Navbar -->
+        <ul class="navbar-nav ml-auto ml-md-0">
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user-circle fa-fw"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="#"> </a>
+              <a class="dropdown-item" href="#"><?php echo $logado ?> </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
+            </div>
+          </li>
+        </ul>
+      </form>
     </nav>
 
 
@@ -113,34 +127,93 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.html">Painel de Controle</a>
+              <a href="home.php">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="divida.html">Dividas</a>
+              <a href="divida.php">Contas</a>
             </li>
-            <li class="breadcrumb-item active">Consultar Divida</li>
+            <li class="breadcrumb-item active">Consultar contas</li>
           </ol>         
 
           <div class="container">
-      <div class="card card-register mx-auto mt-5">
-        <div class="card-header text-center">Consultar Divida</div>
-        <div class="card-body">
-          <form action="POST">
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-12">
-                  <div class="form-label-group">
-                    <input type="number" id="firstCodigoInt" class="form-control" placeholder="Codigo do Integrante" name="codigoInt" required="required" autofocus="autofocus">
-                    <label for="firstCodigoInt">Codigo da Conta</label>
+            <div class="card card-register mx-auto mt-5">
+              <div class="card-header text-center">Consultar contas</div>
+              <div class="card-body">
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-12">
+                        <div class="form-label-group">
+                          <label for="firstCodigoInt">Contas</label>
+                          <select class="col-md-12 col-md-12 form-control" name="conta" id="id_conta">
+                            <option selected disabled="disabled">Selecione...</option>
+                            <?php
+                              while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<option value=' . $linha['id_conta'] . '>' . $linha['id_conta'] . '</option>';
+                              }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-block" name="submit">Consultar conta</button>
                   </div>
-                </div>
+                </form>
               </div>
-              <br>
-              <input type="submit" value="Pesquisar Conta" class="btn btn-primary btn-block">
-          </form>
-        </div>
-      </div>
-    </div>
+            </div>
+          </div>
+
+          <?php
+            if(isset($_POST["submit"])){
+              $cod = $_POST['conta'];
+
+              if(empty($cod) || ($cod=="Selecione...")) {
+                echo "<script language='javascript' type='text/javascript'>alert('Selecione uma opção!');</script>";
+              } else {
+                date_default_timezone_set('America/Sao_Paulo');
+
+                $sql = $link->prepare("SELECT * FROM conta WHERE id_conta = $cod LIMIT 1;");
+                $sql->execute();
+                $linha = $sql->fetch(PDO::FETCH_ASSOC);
+          ?>
+
+          <div class="container">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-table"></i>
+                Dados
+              </div>
+              <div class="card-body">
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Tipo de conta</th>
+                          <th>Valor da conta R$</th>
+                          <th>Data de vencimento da conta</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><?php echo $linha['id_tipo']; ?></td>
+                          <td><?php echo $linha['valor']; ?></td>
+                          <td><?php echo $linha['data_venc']; ?></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer small text-muted col-md-6">Atualizado às '<?php echo date('H:i'); ?>'.</div>
+            </div>
+          </div>
+        
+          <?php
+              }
+            } 
+          ?>
 
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
