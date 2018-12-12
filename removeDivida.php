@@ -2,7 +2,8 @@
 <html lang="pt-br">
 
   <head>
-    <?php 
+    <?php
+      error_reporting(0); 
       /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
        simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
       o caminho para a página principal do site (sistema), burlando assim a obrigação de 
@@ -18,6 +19,19 @@
         }
        
       $logado = $_SESSION['login'];
+    ?>
+    <?php
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $id_rep = $_SESSION['id_conta'];
+
+      $sql = $link->prepare("SELECT id_conta FROM conta;");
+
+      $sql->execute();
     ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -129,23 +143,101 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Remover Divida</div>
         <div class="card-body">
-          <form action="POST">
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-12">
-                  <div class="form-label-group">
-                    <input type="number" id="firstCodigoInt" class="form-control" placeholder="Codigo do Integrante" name="codigoInt" required="required" autofocus="autofocus">
-                    <label for="firstCodigoInt">Codigo da Conta</label>
+          <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-12">
+                        <div class="form-label-group">
+                          <label for="firstCodigoInt">Dividas</label>
+                          <select class="col-md-12 col-md-12 form-control" name="conta" id="id_conta">
+                            <option selected disabled="disabled">Selecione...</option>
+                            <?php
+                              while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<option value=' . $linha['id_conta'] . '>' . $linha['id_conta'] . '</option>';
+                              }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <button type="submit" class="btn btn-primary btn-block" name="submit" value="consultar">Consultar Divida</button>
+                      <button type="submit" class="btn btn-primary btn-block btn-dark" name="submit" value="remover">Remover Divida</button>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <br>
-              <input type="submit" value="Pesquisar Conta" class="btn btn-primary btn-block">
-          </form>
+                </form>
         </div>
       </div>
     </div>
 
+          <?php
+              
+            if(isset($_POST["submit"])){
+              $cod = $_POST['conta'];
+              if(empty($cod) || ($cod=="Selecione...")) {
+                echo "<script language='javascript' type='text/javascript'>alert('Selecione uma opção!');</script>";
+              } else {
+                switch ($_POST["submit"]) {
+                  case 'consultar':
+                      date_default_timezone_set('America/Sao_Paulo');
+
+                      $sql = $link->prepare("SELECT * FROM conta WHERE id_conta = $cod LIMIT 1;");
+                      $sql->execute();
+                      $linha = $sql->fetch(PDO::FETCH_ASSOC);
+          ?>
+          
+          <div class="container">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-table"></i>
+                Dados
+              </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered text-center" width="100%" cellspacing="0">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Tipo de divida</th>
+                          <th>Valor da divida R$</th>
+                          <th>Data de vencimento da divida</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><?php echo $linha['id_tipo']; ?></td>
+                          <td><?php echo $linha['valor']; ?></td>
+                          <td><?php echo $linha['data_venc']; ?></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer small text-muted col-md-6">Atualizado às '<?php echo date('H:i'); ?>'.</div>
+              </form>
+            </div>
+          </div>
+
+          <?php
+                    break;
+                  case 'remover':
+                    $sql = $link->prepare("DELETE FROM conta WHERE id_conta = $cod;");
+                    // execute the query
+                    $sql->execute();
+                
+                    if($sql->rowCount()){
+                      echo "<script language='javascript' type='text/javascript'>alert('Remoção Efetuada!');window.location.href='./removeDivida.php';</script>";
+                    } else {
+                      echo "<script language='javascript' type='text/javascript'>alert('Error na Remoção!');</script>";
+                    }
+                    break;
+                  default:
+                    echo "<script language='javascript' type='text/javascript'>alert('Error!');</script>";
+                    break;
+                }
+              }
+            }  
+          ?>
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
