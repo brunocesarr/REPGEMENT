@@ -119,6 +119,10 @@
             <li class="breadcrumb-item active">Gráficos</li>
           </ol>
 
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Gráfico de despesas mensal da república com relação de contas e valores gerados no período.
+          </div>
+
           <!-- Area Chart Example-->
           <div class="card mb-3">
             <div class="card-header">

@@ -96,7 +96,7 @@
             <span>Operações</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Contas:</h6>
+            <h6 class="dropdown-header">Dividas:</h6>
             <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
             <a class="dropdown-item" href="divida.php">Dívidas</a>
             <div class="dropdown-divider"></div>
@@ -131,6 +131,10 @@
             </li>
             <li class="breadcrumb-item active">Alterar Divida</li>
           </ol>         
+
+          <div class=" card bg-secondary mb-3 text-white card-header text-justify">
+           Entre com o identificador da dívida para que em seguida possa ser realizado o processo de alteração. 
+          </div>
 
           <div class="container">
       <div class="card card-register mx-auto mt-5">

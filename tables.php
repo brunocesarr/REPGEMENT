@@ -122,6 +122,10 @@
             <li class="breadcrumb-item active">Tabelas</li>
           </ol>
 
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Tabelas contendo os integrantes da república.
+          </div>
+
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">

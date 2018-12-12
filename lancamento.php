@@ -137,7 +137,10 @@
           </ol>
 
           <!-- Page Content -->
-          <h1>Lançamentos</h1>
+           <h3>Lançamentos</h3>
+           <div class="card bg-secondary mb-3 text-white card-header text-justify">
+            Adicione as contas geradas pela sua república para que o repgement tenha um controle geral sobre suas dívidas. 
+          </div>
           <hr>
 
           	<div class="container">

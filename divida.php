@@ -120,10 +120,13 @@
           </ol>
 
           <!-- Page Content -->
-          <h1>Gestão de Dividas</h1>
+          <h3>Gestão de Dividas</h3>
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Realize a gestão de suas dívidas de forma fácil e rápida. Com o repgement alterar, consultar e remover dívidas pode ser feito com apenas um clique. 
+          </div>
           <hr>
 
-                  <div class="container">
+    <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Opções</div>
         <div class="card-body">

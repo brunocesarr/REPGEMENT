@@ -54,7 +54,7 @@
     <link href="css/sb-admin.css" rel="stylesheet">
 
   </head>
-
+<body>
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
       <a class="navbar-brand mr-1" href="home.php">REPGEMENT</a>
@@ -134,6 +134,10 @@
             </li>
             <li class="breadcrumb-item active">Consultar integrante</li>
           </ol>         
+
+         <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Entre com o nome do integrante para que em seguida possa ser realizado o processo de consulta nos integrantes vinculados a república.
+          </div>
 
           <div class="container">
       <div class="card card-register mx-auto mt-5">

@@ -135,6 +135,10 @@
             <li class="breadcrumb-item active">Alterar integrante</li>
           </ol>
 
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Altere integrantes para que as informações dos membros da república se mantenham sempre atualizadas. Escolha o integrante que deseja alterar e em seguida entre com seus novos valores.
+          </div>
+
     <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Alterar integrante</div>

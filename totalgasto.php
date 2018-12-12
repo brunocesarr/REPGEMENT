@@ -122,7 +122,10 @@
           </ol>
 
           <!-- Page Content -->
-          <h1>Gastos Totais</h1>
+          <h3>Gastos Totais</h3>
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
+           Somatório do valor de todas as contas geradas pela república em um período. 
+          </div>
           <hr>
 
         </div>

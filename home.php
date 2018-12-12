@@ -225,7 +225,7 @@
           -->
 
           <!-- Area de Texto -->
-          <div class="card mb-3 card-header text-center">
+          <div class="card bg-secondary mb-3 text-white card-header text-justify">
             Olá, bem vindo ao repgement o seu gestor de contas para repúblicas. Explore, conheça e desfrute das funcionalidades que oferecemos. 
           </div>
 
