@@ -103,15 +103,31 @@
                         <i class="fas fa-fw fa-folder"></i>
                         <span>Operações</span>
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                        <h6 class="dropdown-header">Contas:</h6>
-                        <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
-                        <a class="dropdown-item" href="divida.php">Dívidas</a>
-                        <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header">República:</h6>
-                        <a class="dropdown-item" href="totalgasto.php">Gasto Total</a>
-                        <a class="dropdown-item" href="integrante.php">Integrantes</a>
-                    </div>
+                    <?php 
+                        if ($_SESSION['nivel'] == 1) {
+                      ?>
+                          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <h6 class="dropdown-header">Contas:</h6>
+                            <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
+                            <a class="dropdown-item" href="divida.php">Dívidas</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">República:</h6>
+                            <a class="dropdown-item" href="totalgasto.php">Gasto Total</a>
+                            <a class="dropdown-item" href="integrante.php">Integrantes</a>
+                          </div>
+                      <?php 
+                        } else {
+                      ?>
+                          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <h6 class="dropdown-header">Contas:</h6>
+                            <a class="dropdown-item" href="#">Dívidas</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">Integrante:</h6>
+                            <a class="dropdown-item" href="#">Dados</a>
+                          </div>
+                      <?php 
+                        }
+                      ?>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="charts.php">

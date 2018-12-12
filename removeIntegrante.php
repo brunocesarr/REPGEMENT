@@ -185,6 +185,9 @@
                       $sql = $link->prepare("SELECT * FROM integrante WHERE id_integrante = $cod LIMIT 1;");
                       $sql->execute();
                       $linha = $sql->fetch(PDO::FETCH_ASSOC);
+
+                      $data_Nasc = new DateTime($linha['data_Nasc']);
+                      $data = $data_Nasc->format('d/m/Y');
           ?>
           
           <div class="container">
@@ -209,7 +212,7 @@
                         <tr>
                           <td><?php echo $linha['id_integrante']; ?></td>
                           <td><?php echo $linha['nome'] . " " . $linha['sobrenome']; ?></td>
-                          <td><?php echo $linha['data_Nasc']; ?></td>
+                          <td><?php echo $data; ?></td>
                           <td><?php echo $linha['email']; ?></td>
                           <td><?php echo $linha['username']; ?></td>
                         </tr>

@@ -56,6 +56,10 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
 
+    <!-- Mascara JS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.maskMoney.js" type="text/javascript"></script> 
+
   </head>
 
   <body id="page-top">
@@ -170,7 +174,13 @@
                 <div class="col-md-6">
                   <!--<label for="inputValor">Valor da Conta</label>-->
                   <div class="form-label-group">
-                    <input type="text" class="form-control form-control-sm currency" id="money" data-prefix="R$ " minlength="4" name="valor" required="required" autofocus="autofocus"/>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">R$</span>
+                      </div>
+                      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="currency"  minlength="4" name="valor" required="required" autofocus="autofocus" value="0,00"/>
+                      <script type="text/javascript">$("#currency").maskMoney({thousands:'.', decimal:',', allowZero:true, suffix: ''});</script>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -197,7 +207,7 @@
                 </div>
               </div>
             </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Registrar Conta" name="registraConta" />
+            <input type="submit" class="btn btn-primary btn-block" value="Registrar Conta" name="registraConta" onclick="result()" />
           </form>
         </div>
       </div>
@@ -262,12 +272,7 @@
 
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>
-
-    <!-- Mascara JS -->
-    <script src="js/mascara.js"></script>
-
-    <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>           
+    <script src="js/demo/chart-area-demo.js"></script>          
 
   </body>
 

@@ -225,8 +225,8 @@
           -->
 
           <!-- Area de Texto -->
-          <div class="card bg-secondary mb-3 text-white card-header text-justify">
-            Olá, bem vindo ao repgement o seu gestor de contas para repúblicas. Explore, conheça e desfrute das funcionalidades que oferecemos. 
+          <div class="card mb-3 card-header text-center">
+            Olá, bem vindo ao REPGEMENT o seu gestor de contas para repúblicas. Explore, conheça e desfrute das funcionalidades que oferecemos. 
           </div>
 
           <!-- Area Chart Example
@@ -265,11 +265,14 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
+                        <?php while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) { 
+                          $data_Nasc = new DateTime($linha['data_Nasc']);
+                          $data = $data_Nasc->format('d/m/Y');
+                        ?>
                           <tr>
                             <td><?php echo $linha['id_integrante']; ?></td>
                             <td><?php echo $linha['nome'] . " " . $linha['sobrenome']; ?></td>
-                            <td><?php echo $linha['data_Nasc']; ?></td>
+                            <td><?php echo $data; ?></td>
                             <td><?php echo $linha['email']; ?></td>
                             <td><?php echo $linha['username']; ?></td>
                           </tr>

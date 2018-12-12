@@ -181,6 +181,9 @@
           $sql->execute();
           $linha = $sql->fetch(PDO::FETCH_ASSOC);
 
+          $data_Nasc = new DateTime($linha['data_Nasc']);
+          $data = $data_Nasc->format('d/m/Y');
+          
           echo '
                 <div class="card mb-3">
                   <div class="card-header">
@@ -188,7 +191,7 @@
                     Dados</div>
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead class="thead-dark">
                           <tr>
                             <th>Nome</th>
@@ -200,7 +203,7 @@
                         <tbody>
                           <tr>
                             <td>'. $linha['nome'] . ' ' . $linha['sobrenome'] .'</td>
-                            <td>' . $linha['data_Nasc'] . '</td>
+                            <td>' . $data . '</td>
                             <td>' . $linha['email'] . '</td>
                             <td>' . $linha['username'] . '</td>
                           </tr>
@@ -236,10 +239,12 @@
                         </thead>
                         <tbody>';
                           foreach($linha1 as $row) {
+                            $data_Nasc = new DateTime($row['data_venc']);
+                            $data = $data_Nasc->format('d/m/Y');
 
                           echo '
                             <tr>
-                              <td>'. $row['data_venc'] .'</td>
+                              <td>'. $data .'</td>
                               <td>' . $row['nome_tipo'] . '</td>
                               <td> R$ ' . $row['valor'] . '</td>
                               <td></td>

@@ -3,18 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="dc87cb58-cd56-4787-b047-cce359e1eccc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addIntegrante.php" afterPath="$PROJECT_DIR$/addIntegrante.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alteraDivida.php" afterPath="$PROJECT_DIR$/alteraDivida.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alteraIntegrante.php" afterPath="$PROJECT_DIR$/alteraIntegrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/charts.php" afterPath="$PROJECT_DIR$/charts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultaDivida.php" afterPath="$PROJECT_DIR$/consultaDivida.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultaIntegrante.php" afterPath="$PROJECT_DIR$/consultaIntegrante.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.php" afterPath="$PROJECT_DIR$/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home2.php" afterPath="$PROJECT_DIR$/home2.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lancamento.php" afterPath="$PROJECT_DIR$/lancamento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lancar.php" afterPath="$PROJECT_DIR$/lancar.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysql.php" afterPath="$PROJECT_DIR$/mysql.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/removeIntegrante.php" afterPath="$PROJECT_DIR$/removeIntegrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validar.php" afterPath="$PROJECT_DIR$/validar.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,13 +20,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="home.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/home.php">
+      <file leaf-file-name="lancamento.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lancamento.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+            <state relative-caret-position="265">
+              <caret line="185" column="50" lean-forward="false" selection-start-line="185" selection-start-column="50" selection-end-line="185" selection-end-column="50" />
               <folding>
-                <marker date="1544624146421" expanded="true" signature="1197:1273" ph="SELECT * FRO... integrante" />
+                <marker date="1544640570501" expanded="true" signature="1141:1201" ph="SELECT id_ti... tipo_conta" />
+                <marker date="1544640570501" expanded="true" signature="1268:1353" ph="SELECT id_in... integrante" />
               </folding>
             </state>
           </provider>
@@ -47,12 +43,12 @@
       <list>
         <option value="$PROJECT_DIR$/consultaIntegrante.php" />
         <option value="$PROJECT_DIR$/lancar.php" />
-        <option value="$PROJECT_DIR$/lancamento.php" />
         <option value="$PROJECT_DIR$/alteraDivida.php" />
         <option value="$PROJECT_DIR$/alteraIntegrante.php" />
         <option value="$PROJECT_DIR$/charts.php" />
         <option value="$PROJECT_DIR$/consultaDivida.php" />
         <option value="$PROJECT_DIR$/home.php" />
+        <option value="$PROJECT_DIR$/lancamento.php" />
       </list>
     </option>
   </component>
@@ -94,17 +90,6 @@
             <path>
               <item name="REPGEMENT" type="b2602c69:ProjectViewProjectNode" />
               <item name="REPGEMENT" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="REPGEMENT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="REPGEMENT" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="REPGEMENT" type="b2602c69:ProjectViewProjectNode" />
-              <item name="REPGEMENT" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="mascara.js" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
@@ -153,11 +138,12 @@
       <workItem from="1544536355414" duration="263000" />
       <workItem from="1544618608822" duration="49000" />
       <workItem from="1544621551396" duration="1916000" />
+      <workItem from="1544640296776" duration="307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3346000" />
+    <option name="totallyTimeSpent" value="3653000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="725" extended-state="6" />
@@ -193,32 +179,22 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/consultaIntegrante.php">
+    <entry file="file://$PROJECT_DIR$/home.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1544612402303" expanded="true" signature="1141:1226" ph="SELECT id_in... integrante" />
-            <marker date="1544612402303" expanded="true" signature="6813:6872" ph="SELECT * FRO... integrante" />
-            <marker date="1544612402303" expanded="true" signature="7010:8276" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7054:7135" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7177:8152" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7228:8127" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7331:8100" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7382:7665" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7413:7632" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7697:8069" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7728:8036" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8373:8495" ph="SELECT c.dat... conta" />
-            <marker date="1544612402303" expanded="true" signature="8623:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8667:8749" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8791:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8842:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8945:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8996:9284" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="9027:9251" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="9438:9705" ph="..." />
+            <marker date="1544639000843" expanded="true" signature="1248:1324" ph="SELECT * FRO... integrante" />
+            <marker date="1544639000843" expanded="true" signature="1359:1512" ph="SELECT c.dat... conta" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultaIntegrante.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -226,9 +202,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-          <folding>
-            <marker date="1544621593506" expanded="true" signature="424:539" ph="INSERT INTO conta... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -236,28 +209,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1544612402303" expanded="true" signature="1141:1226" ph="SELECT id_in... integrante" />
-            <marker date="1544612402303" expanded="true" signature="6813:6872" ph="SELECT * FRO... integrante" />
-            <marker date="1544612402303" expanded="true" signature="7010:8276" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7054:7135" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7177:8152" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7228:8127" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7331:8100" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7382:7665" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7413:7632" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7697:8069" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7728:8036" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8373:8495" ph="SELECT c.dat... conta" />
-            <marker date="1544612402303" expanded="true" signature="8623:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8667:8749" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8791:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8842:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8945:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8996:9284" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="9027:9251" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="9438:9705" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -281,28 +233,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="212" column="42" lean-forward="false" selection-start-line="212" selection-start-column="42" selection-end-line="212" selection-end-column="42" />
-          <folding>
-            <marker date="1544612402303" expanded="true" signature="1141:1226" ph="SELECT id_in... integrante" />
-            <marker date="1544612402303" expanded="true" signature="6813:6872" ph="SELECT * FRO... integrante" />
-            <marker date="1544612402303" expanded="true" signature="7010:8276" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7054:7135" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7177:8152" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7228:8127" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7331:8100" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7382:7665" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7413:7632" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7697:8069" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="7728:8036" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8373:8495" ph="SELECT c.dat... conta" />
-            <marker date="1544612402303" expanded="true" signature="8623:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8667:8749" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8791:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8842:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8945:9316" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="8996:9284" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="9027:9251" ph="..." />
-            <marker date="1544612402303" expanded="true" signature="9438:9705" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -318,18 +249,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="129" lean-forward="false" selection-start-line="0" selection-start-column="129" selection-end-line="0" selection-end-column="129" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lancamento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="133" column="31" lean-forward="false" selection-start-line="133" selection-start-column="31" selection-end-line="133" selection-end-column="31" />
-          <folding>
-            <marker date="1544623457689" expanded="true" signature="1141:1201" ph="SELECT id_ti... tipo_conta" />
-            <marker date="1544623457689" expanded="true" signature="1268:1353" ph="SELECT id_in... integrante" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -337,9 +256,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="144" lean-forward="false" selection-start-line="15" selection-start-column="144" selection-end-line="15" selection-end-column="144" />
-          <folding>
-            <marker date="1544621593506" expanded="true" signature="424:539" ph="INSERT INTO conta... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -347,9 +263,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1544526430432" expanded="true" signature="1383:1445" ph="SELECT id_re... republica" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -357,9 +271,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="123" column="29" lean-forward="true" selection-start-line="123" selection-start-column="29" selection-end-line="123" selection-end-column="29" />
-          <folding>
-            <marker date="1544623543466" expanded="true" signature="1102:1146" ph="SELECT id_co... conta" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -367,11 +279,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="125" column="0" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding>
-            <marker date="1544623575369" expanded="true" signature="1153:1238" ph="SELECT id_in... integrante" />
-            <marker date="1544623575369" expanded="true" signature="7269:7330" ph="SELECT * FRO... integrante" />
-            <marker date="1544623575369" expanded="true" signature="12037:12236" ph="UPDATE integ... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -393,10 +301,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/home.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+        <state relative-caret-position="-1380">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
-            <marker date="1544624146421" expanded="true" signature="1197:1273" ph="SELECT * FRO... integrante" />
+            <marker date="1544639000843" expanded="true" signature="1248:1324" ph="SELECT * FRO... integrante" />
+            <marker date="1544639000843" expanded="true" signature="1359:1512" ph="SELECT c.dat... conta" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lancamento.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="185" column="50" lean-forward="false" selection-start-line="185" selection-start-column="50" selection-end-line="185" selection-end-column="50" />
+          <folding>
+            <marker date="1544640570501" expanded="true" signature="1141:1201" ph="SELECT id_ti... tipo_conta" />
+            <marker date="1544640570501" expanded="true" signature="1268:1353" ph="SELECT id_in... integrante" />
           </folding>
         </state>
       </provider>

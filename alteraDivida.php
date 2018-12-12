@@ -26,7 +26,7 @@
       $con = new Conexao();
       $link = $con->conexao();
 
-      $sql = $link->prepare("SELECT id_conta FROM conta ORDER BY id_conta;");
+      $sql = $link->prepare("SELECT c.id_conta, t.nome_tipo FROM conta c, tipo_conta t WHERE c.id_tipo = t.id_tipo ORDER BY id_conta;");
       
       $sql->execute();
     ?>
@@ -150,7 +150,7 @@
                       <option selected disabled="disabled">Selecione...</option>
                       <?php
                         while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
-                          echo '<option value=' . $linha['id_conta'] . '>' . $linha['id_conta'] . '</option>';
+                          echo '<option value=' . $linha['id_conta'] . '>' . $linha['nome_tipo'] . '</option>';
                         }
                       ?>
                     </select>
