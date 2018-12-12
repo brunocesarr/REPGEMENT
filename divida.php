@@ -114,7 +114,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.html">Painel de Controle</a>
+              <a href="home.php">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item active">Dividas</li>
           </ol>

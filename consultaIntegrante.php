@@ -127,10 +127,10 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.html">Painel de Controle</a>
+              <a href="home.php">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="integrante.html">Integrantes</a>
+              <a href="integrante.php">Integrantes</a>
             </li>
             <li class="breadcrumb-item active">Consultar integrante</li>
           </ol>         
@@ -185,7 +185,7 @@
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
+                        <thead class="thead-dark">
                           <tr>
                             <th>Nome</th>
                             <th>Data de Nascimento</th>
@@ -222,7 +222,7 @@
                   <div class="card-body">
                     <div class="table-responsive">
                       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
+                        <thead class="thead-dark">
                           <tr>
                             <th>Data de Vencimento</th>
                             <th>Tipo da Conta</th>

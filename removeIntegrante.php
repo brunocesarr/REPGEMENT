@@ -127,10 +127,10 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.html">Painel de Controle</a>
+              <a href="home.php">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="integrante.html">Integrantes</a>
+              <a href="integrante.php">Integrantes</a>
             </li>
             <li class="breadcrumb-item active">Remover integrante</li>
           </ol>         
@@ -157,7 +157,10 @@
                       </div>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary btn-block" name="submit">Consultar Integrante</button>
+                    <div class="row">
+                      <button type="submit" class="btn btn-primary btn-block" name="submit" value="consultar">Consultar Integrante</button>
+                      <button type="submit" class="btn btn-primary btn-block btn-dark" name="submit" value="remover">Remover Integrante</button>
+                    </div>
                   </div>
                 </form>
               </div>
@@ -165,31 +168,33 @@
           </div>
 
           <?php
+              
             if(isset($_POST["submit"])){
               $cod = $_POST['integrante'];
-
               if(empty($cod) || ($cod=="Selecione...")) {
                 echo "<script language='javascript' type='text/javascript'>alert('Selecione uma opção!');</script>";
               } else {
-                date_default_timezone_set('America/Sao_Paulo');
+                switch ($_POST["submit"]) {
+                  case 'consultar':
+                      date_default_timezone_set('America/Sao_Paulo');
 
-                $sql = $link->prepare("SELECT * FROM integrante WHERE id_integrante = $cod LIMIT 1;");
-                $sql->execute();
-                $linha = $sql->fetch(PDO::FETCH_ASSOC);
+                      $sql = $link->prepare("SELECT * FROM integrante WHERE id_integrante = $cod LIMIT 1;");
+                      $sql->execute();
+                      $linha = $sql->fetch(PDO::FETCH_ASSOC);
           ?>
-
+          
           <div class="container">
             <div class="card mb-3">
               <div class="card-header">
                 <i class="fas fa-table"></i>
                 Dados
               </div>
-              <div class="card-body">
-                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+                <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
+                    <table class="table table-bordered text-center" width="100%" cellspacing="0">
+                      <thead class="thead-dark">
                         <tr>
+                          <th>Código do Integrante</th>
                           <th>Nome</th>
                           <th>Data de Nascimento</th>
                           <th>Email</th>
@@ -198,6 +203,7 @@
                       </thead>
                       <tbody>
                         <tr>
+                          <td><?php echo $linha['id_integrante']; ?></td>
                           <td><?php echo $linha['nome'] . " " . $linha['sobrenome']; ?></td>
                           <td><?php echo $linha['data_Nasc']; ?></td>
                           <td><?php echo $linha['email']; ?></td>
@@ -206,31 +212,34 @@
                       </tbody>
                     </table>
                   </div>
-                </form>
-              </div>
-              <div class="card-footer small text-muted col-md-6">Atualizado às '<?php echo date('H:i'); ?>'.</div>
+                </div>
+                <div class="card-footer small text-muted col-md-6">Atualizado às '<?php echo date('H:i'); ?>'.</div>
+              </form>
             </div>
-            <input type="submit" class="btn btn-primary btn-block" name="remove" value="Remover Integrante" /> 
           </div>
-        
-          <?php
-              }
-            } 
 
-            if(isset($_POST["remove"])){
-              $sql = $link->prepare("DELETE FROM integrante WHERE id_integrante = $cod;");
-              // execute the query
-              $sql->execute();
-          
-              if($sql->rowCount()){
-                echo "<script language='javascript' type='text/javascript'>alert('Remoção Efetuada!');window.location.href='./alteraIntegrante.php';</script>";
-              } else {
-                echo "<script language='javascript' type='text/javascript'>alert('Error na Remoção!');</script>";
+          <?php
+                    break;
+                  case 'remover':
+                    $sql = $link->prepare("DELETE FROM integrante WHERE id_integrante = $cod;");
+                    // execute the query
+                    $sql->execute();
+                
+                    if($sql->rowCount()){
+                      echo "<script language='javascript' type='text/javascript'>alert('Remoção Efetuada!');window.location.href='./removeIntegrante.php';</script>";
+                    } else {
+                      echo "<script language='javascript' type='text/javascript'>alert('Error na Remoção!');</script>";
+                    }
+                    break;
+                  default:
+                    echo "<script language='javascript' type='text/javascript'>alert('Error!');</script>";
+                    break;
+                }
               }
-            }
+            }  
           ?>
 
-         <!-- Sticky Footer -->
+        <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">

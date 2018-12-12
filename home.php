@@ -19,6 +19,25 @@
        
       $logado = $_SESSION['login'];
     ?>
+    <?php
+      include_once './mysql.php';
+
+      date_default_timezone_set('America/Sao_Paulo'); 
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $id_rep = $_SESSION['id_republica'];
+      $id_integrante = $_SESSION['id_integrante'];
+
+      $sql = $link->prepare("SELECT * FROM integrante WHERE id_republica = $id_rep ORDER BY id_integrante;");
+      $sql1 = $link->prepare("SELECT c.data_venc, t.nome_tipo, c.valor FROM conta c, tipo_conta t WHERE c.id_integrante = $id_integrante AND c.id_tipo = t.id_tipo ORDER BY c.data_venc;");
+
+      $sql->execute();
+      $sql1->execute();
+    ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -85,16 +104,33 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Operações</span>
           </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Contas:</h6>
-            <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
-            <a class="dropdown-item" href="divida.php">Dívidas</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">República:</h6>
-            <a class="dropdown-item" href="totalgasto.php">Gasto Total</a>
-            <a class="dropdown-item" href="integrante.php">Integrantes</a>
-          </div>
-        </li>
+
+          <?php 
+            if ($_SESSION['nivel'] == 1) {
+          ?>
+              <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                <h6 class="dropdown-header">Contas:</h6>
+                <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
+                <a class="dropdown-item" href="divida.php">Dívidas</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">República:</h6>
+                <a class="dropdown-item" href="totalgasto.php">Gasto Total</a>
+                <a class="dropdown-item" href="integrante.php">Integrantes</a>
+              </div>
+          <?php 
+            } else {
+          ?>
+              <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                <h6 class="dropdown-header">Contas:</h6>
+                <a class="dropdown-item" href="#">Dívidas</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Integrante:</h6>
+                <a class="dropdown-item" href="#">Dados</a>
+              </div>
+          <?php 
+            }
+          ?>
+          </li>
         <li class="nav-item">
           <a class="nav-link" href="charts.php">
             <i class="fas fa-fw fa-chart-area"></i>
@@ -114,12 +150,12 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Painel de controle</a>
+              <a href="home.php">Painel de controle</a>
             </li>
             <li class="breadcrumb-item active">Visão global</li>
           </ol>
 
-          <!-- Icon Cards-->
+          <!-- Icon Cards
           <div class="row">
             <div class="col-xl-3 col-sm-6 mb-3">
               <div class="card text-white bg-primary o-hidden h-100">
@@ -186,81 +222,105 @@
               </div>
             </div>
           </div>
+          -->
 
-          <!-- Area Chart Example-->
+          <!-- Area de Texto -->
+          <div class="card mb-3 card-header text-center">
+            Olá, bem vindo ao repgement o seu gestor de contas para repúblicas. Explore, conheça e desfrute das funcionalidades que oferecemos. 
+          </div>
+
+          <!-- Area Chart Example
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-chart-area"></i>
-              Exemplo de gráfico de área
+              Gráfico de Despesas
             </div>
             <div class="card-body">
               <canvas id="myAreaChart" width="100%" height="30"></canvas>
             </div>
-            <div class="card-footer small text-muted">Atualizado ontem às 23h59</div>
+            <div class="card-footer small text-muted">Atualizado às '<?php echo date('H:i'); ?>'.</div>
           </div>
+          -->
 
-          <!-- DataTables Example -->
-          <div class="card mb-3">
-            <div class="card-header">
-              <i class="fas fa-table"></i>
-              Exemplo de Tabela</div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Data</th>
-                      <th>Descrição da Conta</th>
-                      <th>Devedor</th>
-                      <th>Valor</th>
-                      </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Data</th>
-                      <th>Descrição da Conta</th>
-                      <th>Devedor</th>
-                      <th>Valor</th>
-                      </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>2011/04/25</td>
-                      <td>System Architect</td>
-                      <td>Tiger Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>2011/04/25</td>
-                      <td>System Architect</td>
-                      <td>Tiger Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>2011/04/25</td>
-                      <td>System Architect</td>
-                      <td>Tiger Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>2011/04/25</td>
-                      <td>System Architect</td>
-                      <td>Tiger Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>2011/04/26</td>
-                      <td>System Architect</td>
-                      <td>Riy Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                  </tbody>
-                </table>
+          <?php 
+            if ($_SESSION['nivel'] == 1) {
+          ?>
+          <!-- DataTables -->
+          <div class="container">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-table"></i>
+                Tabela de Integrantes
               </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered text-center" width="100%" cellspacing="0">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Código do Integrante</th>
+                          <th>Nome</th>
+                          <th>Data de Nascimento</th>
+                          <th>Email</th>
+                          <th>Username</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
+                          <tr>
+                            <td><?php echo $linha['id_integrante']; ?></td>
+                            <td><?php echo $linha['nome'] . " " . $linha['sobrenome']; ?></td>
+                            <td><?php echo $linha['data_Nasc']; ?></td>
+                            <td><?php echo $linha['email']; ?></td>
+                            <td><?php echo $linha['username']; ?></td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer small text-muted col-md-6">Atualizado às '<?php echo date('H:i'); ?>'.</div>
             </div>
-            <div class="card-footer small text-muted">Atualizado ontem às 23:59</div>
           </div>
 
+          <?php 
+            } else {
+          ?>
+          <!-- DataTables Example -->
+          <div class="container">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-table"></i>
+                Tabela de Contas
+              </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered text-center" width="100%" cellspacing="0">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Data de Vencimento</th>
+                          <th>Tipo da Conta</th>
+                          <th>Valor</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php while ($linha = $sql1->fetch(PDO::FETCH_ASSOC)) { ?>
+                          <tr>
+                            <td><?php echo $linha['data_venc']; ?></td>
+                            <td><?php echo $linha['nome_tipo']; ?></td>
+                            <td><?php echo $linha['valor']; ?></td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer small text-muted col-md-6">Atualizado às '<?php echo date('H:i'); ?>'.</div>
+            </div>
+          </div>
+          <?php 
+            }
+          ?>
+        
         </div>
         <!-- /.container-fluid -->
 

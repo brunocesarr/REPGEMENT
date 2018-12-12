@@ -26,7 +26,7 @@
   		unset ($_SESSION['senha']);
   		unset ($_SESSION['id_integrante']);
   		unset ($_SESSION['id_republica']);
-		echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos.');window.location.href='./index.html';</script>";
+		echo"<script language='javascript' type='text/javascript'>alert('Login e/ou senha incorretos.');window.location.href='./index.php';</script>";
         //	header("Location:./index.html");
 	} else {
         $_SESSION['id_integrante'] = $linha->id_integrante;
@@ -34,11 +34,6 @@
 		$_SESSION['login'] = $linha->nome;
 		$_SESSION['senha'] = $linha->senha;
 		$_SESSION['nivel'] = $linha->nivel;
-		echo"<script language='javascript' type='text/javascript'>alert('Bem Vindo $linha->nome $linha->sobrenome.');</script>";
-		if ($_SESSION['nivel'] == 1){
-			echo"<script language='javascript' type='text/javascript'>window.location.href='./home.php';</script>";
-		} else {
-			echo"<script language='javascript' type='text/javascript'>window.location.href='./home2.php';</script>";
-		}
+		echo"<script language='javascript' type='text/javascript'>alert('Bem Vindo $linha->nome $linha->sobrenome.');window.location.href='./home.php';</script>";
 	}
 ?>

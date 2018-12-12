@@ -131,7 +131,7 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.html">Painel de Controle</a>
+              <a href="home.php">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item active">Lançamentos</li>
           </ol>
@@ -167,13 +167,13 @@
                 <div class="col-md-6">
                   <!--<label for="inputValor">Valor da Conta</label>-->
                   <div class="form-label-group">
-                    <input type="number" pattern="^\d{4}-\d{3}-\d{4}$" id="inputValor" class="form-control" placeholder="Valor" name="valor" required="required" autofocus="autofocus"/>
+                    <input type="text" class="form-control form-control-sm currency" id="money" data-prefix="R$ " minlength="4" name="valor" required="required" autofocus="autofocus"/>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
                     <label for="id_int">Codigo do Integrante</label>
-                    <select class="col-md-12 col-md-12 form-control form-control-lg" name="id_integrante" id="id_int">
+                    <select class="col-md-12 col-md-12 form-control" name="id_integrante" id="id_int">
                       <option selected disabled="disabled">Selecione...</option>
                       <?php
                         while ($linha = $sql1->fetch(PDO::FETCH_ASSOC)) {
@@ -260,6 +260,9 @@
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
+
+    <!-- Mascara JS -->
+    <script src="js/mascara.js"></script>
 
     <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>           
 

@@ -113,10 +113,10 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="home.html">Painel de Controle</a>
+              <a href="home.php">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="divida.html">Dividas</a>
+              <a href="divida.php">Dividas</a>
             </li>
             <li class="breadcrumb-item active">Remover Divida</li>
           </ol>         
