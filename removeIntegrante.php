@@ -22,15 +22,11 @@
     ?>
     <?php
       include_once './mysql.php';
-
       //  Realiza a busca na base de dados isso
       $con = new Conexao();
       $link = $con->conexao();
-
       $id_rep = $_SESSION['id_republica'];
-
       $sql = $link->prepare("SELECT id_integrante, nome FROM integrante WHERE id_republica = $id_rep ORDER BY nome;");
-
       $sql->execute();
     ?>
 
@@ -135,10 +131,6 @@
             <li class="breadcrumb-item active">Remover integrante</li>
           </ol>         
 
-          <div class="card bg-secondary mb-3 text-white card-header text-justify">
-           Entre com o nome do integrante para que em seguida possa ser realizado o processo de remoção do integrante selecionado.
-          </div>
-
           <div class="container">
             <div class="card card-register mx-auto mt-5">
               <div class="card-header text-center">Remover integrante</div>
@@ -181,13 +173,9 @@
                 switch ($_POST["submit"]) {
                   case 'consultar':
                       date_default_timezone_set('America/Sao_Paulo');
-
                       $sql = $link->prepare("SELECT * FROM integrante WHERE id_integrante = $cod LIMIT 1;");
                       $sql->execute();
                       $linha = $sql->fetch(PDO::FETCH_ASSOC);
-
-                      $data_Nasc = new DateTime($linha['data_Nasc']);
-                      $data = $data_Nasc->format('d/m/Y');
           ?>
           
           <div class="container">
@@ -212,7 +200,7 @@
                         <tr>
                           <td><?php echo $linha['id_integrante']; ?></td>
                           <td><?php echo $linha['nome'] . " " . $linha['sobrenome']; ?></td>
-                          <td><?php echo $data; ?></td>
+                          <td><?php echo $linha['data_Nasc']; ?></td>
                           <td><?php echo $linha['email']; ?></td>
                           <td><?php echo $linha['username']; ?></td>
                         </tr>

@@ -14,7 +14,7 @@
         //  Versão Local - Bruno
         //$this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB;charset=utf8", "root", "");
         //  Versão Local - Darlan
-        // $this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB;charset=utf8", "root", "root");
+        //$this->link = new PDO("mysql:host=localhost;dbname=SistemaWEB;charset=utf8", "root", "root");
 
         $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
