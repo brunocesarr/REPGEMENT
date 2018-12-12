@@ -207,7 +207,7 @@
                 </div>
               </div>
             </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Registrar Conta" name="registraConta" onclick="result()" />
+            <input type="submit" class="btn btn-primary btn-block" value="Registrar Conta" name="registraConta"/>
           </form>
         </div>
       </div>

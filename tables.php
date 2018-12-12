@@ -21,6 +21,21 @@
        
       $logado = $_SESSION['login'];
     ?>
+    <?php
+      include_once './mysql.php';
+
+      date_default_timezone_set('America/Sao_Paulo');
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $id_rep = $_SESSION['id_republica'];
+
+      $sql = $link->prepare("SELECT c.id_conta, c.data_venc, t.nome_tipo, i.nome, c.valor FROM conta c, tipo_conta t, integrante i WHERE t.id_tipo = c.id_tipo AND i.id_integrante = c.id_integrante AND i.id_republica = $id_rep;");
+      $sql->execute();
+    ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -134,53 +149,46 @@
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
+                  <thead class="thead-dark">
                     <tr>
+                      <th>Código</th>
                       <th>Data</th>
                       <th>Descrição da Conta</th>
-                      <th>Devedor</th>
+                      <th>Integrante</th>
                       <th>Valor</th>
-                      </tr>
+                    </tr> 
                   </thead>
                   <tfoot>
                     <tr>
+                      <th>Código</th>
                       <th>Data</th>
                       <th>Descrição da Conta</th>
-                      <th>Devedor</th>
+                      <th>Integrante</th>
                       <th>Valor</th>
-                      </tr>
+                    </tr> 
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>2011/04/25</td>
-                      <td>System Architect</td>
-                      <td>Tiger Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>2011/04/25</td>
-                      <td>System Architect</td>
-                      <td>Tiger Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>2011/04/25</td>
-                      <td>System Architect</td>
-                      <td>Tiger Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>2011/04/25</td>
-                      <td>System Architect</td>
-                      <td>Tiger Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
-                    <tr>
-                      <td>2011/04/26</td>
-                      <td>System Architect</td>
-                      <td>Riy Nixon</td>
-                      <td>$320,800</td>
-                    </tr>
+                    <?php while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) { ?>
+                      <tr>
+                        <td><?php echo $linha['id_conta']; ?></td>
+                        <td>
+                          <?php
+                          $data_Nasc = new DateTime($linha['data_venc']);
+                          $data = $data_Nasc->format('d/m/Y'); 
+                          echo $data; 
+                          ?>
+                        </td>
+                        <td><?php echo $linha['nome_tipo']; ?></td>
+                        <td><?php echo $linha['nome']; ?></td>
+                        <td>
+                          <?php 
+                          $valor = number_format($linha['valor'], 2, ',', '.');
+                          echo $valor; 
+                          ?>
+                        </td>
+                        
+                      </tr>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>

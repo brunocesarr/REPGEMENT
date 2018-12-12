@@ -5,22 +5,6 @@
   $con = new Conexao();
   $link = $con->conexao();
 
-  function tofloat($num) {
-    $dotPos = strrpos($num, ',');
-    $commaPos = strrpos($num, '.');
-    $sep = (($dotPos > $commaPos) && $dotPos) ? $dotPos :
-        ((($commaPos > $dotPos) && $commaPos) ? $commaPos : false);
-  
-    if (!$sep) {
-        return floatval(preg_replace("/[^0-9]/", "", $num));
-    }
-
-    return floatval(
-        preg_replace("/[^0-9]/", "", substr($num, 0, $sep)) . '.' .
-        preg_replace("/[^0-9]/", "", substr($num, $sep+1, strlen($num)))
-    );
-  }
-
   $id_tipo = $_POST['id_tipo'];
   $money = $_POST['valor'];
   $valor = str_replace(',', '.', str_replace('.','',$money));

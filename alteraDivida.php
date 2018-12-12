@@ -26,8 +26,10 @@
       $con = new Conexao();
       $link = $con->conexao();
 
-      $sql = $link->prepare("SELECT c.id_conta, t.nome_tipo FROM conta c, tipo_conta t WHERE c.id_tipo = t.id_tipo ORDER BY id_conta;");
-      
+      $id_rep = $_SESSION['id_republica'];
+
+      $sql = $link->prepare("SELECT c.id_conta, t.nome_tipo, c.valor, c.data_venc FROM conta c, tipo_conta t WHERE t.id_tipo = c.id_tipo;");
+
       $sql->execute();
     ?>
     <meta charset="utf-8">
@@ -140,17 +142,17 @@
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Alterar Divida</div>
         <div class="card-body">
-          <form action="POST">
+          <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
                   <div class="form-label-group">
-                    <select class="col-md-12 col-md-12 form-control" name="id_tipo">
+                    <select class="col-md-12 col-md-12 form-control" name="id_conta">
                     <label for="firstCodigoInt">Codigo da Conta</label>
                       <option selected disabled="disabled">Selecione...</option>
                       <?php
                         while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
-                          echo '<option value=' . $linha['id_conta'] . '>' . $linha['nome_tipo'] . '</option>';
+                          echo '<option value=' . $linha['id_conta'] . '>' . $linha['data_venc'] . ' - ' . $linha['nome_tipo'] . '</option>';
                         }
                       ?>
                     </select>
@@ -158,12 +160,137 @@
                 </div>
               </div>
               <br>
-              <input type="submit" value="Pesquisar Conta" class="btn btn-primary btn-block">
+              <input type="submit" value="Pesquisar Conta" class="btn btn-primary btn-block" name="submit">
+            </div>
           </form>
         </div>
       </div>
     </div>
 
+    <?php
+      if(isset($_POST["submit"])){
+        $cod = $_POST['id_conta'];
+
+        if(empty($cod) || ($cod=="Selecione...")) {
+          echo "<script language='javascript' type='text/javascript'>alert('Selecione uma opção!');</script>";
+        } else {
+          echo "<script language='javascript' type='text/javascript'> document.getElementById('formulario').style.display = 'block';</script>";
+
+          $sql = $link->prepare("SELECT * FROM conta WHERE id_conta = $cod LIMIT 1;");
+          $sql->execute();
+          $linha = $sql->fetch(PDO::FETCH_ASSOC);
+    ?>
+         
+    
+    <div class="container" id="formulario">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header text-center">Alterar Conta</div>
+            <div class="card-body">
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+                    <div class="form-group">
+                      <div class="card-header text-center">Dados</div><br>
+                      <div class="form-row">
+                        <div class="">
+                          <div class="form-label-group">
+                              <input type="hidden" id="id" class="form-control" placeholder="id_conta" required="required" autofocus="autofocus" name="id_conta" value="<?php echo $linha['id_conta']; ?>">
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-label-group">
+                            <label for="conta">Tipo de Conta</label>
+                            <select class="col-md-12 col-md-12 form-control" name="id_tipo" id="id_tipo" >
+                              <option selected disabled="disabled">Selecione...</option>
+                              <option selected value="<?php echo $linha['id_tipo']; ?>">...</option>
+                              <?php
+                                $sql1 = $link->prepare("SELECT id_tipo, nome_tipo FROM tipo_conta ORDER BY nome_tipo;");
+        
+                                $sql1->execute();
+                        
+                                while ($linha1 = $sql1->fetch(PDO::FETCH_ASSOC)) {
+                                  echo '<option value=' . $linha1['id_tipo'] . '>' . $linha1['nome_tipo'] . '</option>';
+                                }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-row">
+                        <div class="col-md-6">
+                          <!--<label for="inputValor">Valor da Conta</label>-->
+                          <div class="form-label-group">
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">R$</span>
+                              </div>
+                              <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" id="currency"  minlength="4" name="valor" required="required" autofocus="autofocus" value="<?php echo $linha['valor']; ?>"/>
+                              <script type="text/javascript">$("#currency").maskMoney({thousands:'.', decimal:',', allowZero:true, suffix: ''});</script>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-label-group">
+                            <label for="id_int">Codigo do Integrante</label>
+                            <select class="col-md-12 col-md-12 form-control" name="id_integrante" id="id_int" >
+                              <option selected disabled="disabled">Selecione...</option>
+                              <option selected value="<?php echo $linha['id_integrante']; ?>">...</option>
+                              <?php
+                                $sql2 = $link->prepare("SELECT id_integrante, nome FROM integrante WHERE id_republica = $id_rep ORDER BY nome;");
+      
+                                $sql2->execute();
+
+                                while ($linha2 = $sql2->fetch(PDO::FETCH_ASSOC)) {
+                                  echo '<option value=' . $linha2['id_integrante'] . '>' . $linha2['nome'] . '</option>';
+                                }
+                              ?>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-row">
+                        <div class="col-md-12">
+                          <div class="form-label-group">
+                            <input type="date" id="inputValor" class="form-control" placeholder="Data" name="data_venc" required="required" autofocus="autofocus" id="data" value="<?php echo $linha['data_venc']; ?>">
+                            <label for="data">Data de Vencimento</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-block" name="alterIntegrante">Alterar Conta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php
+        }
+      }
+    ?>
+
+    <?php
+      if(isset($_POST["alterIntegrante"])){
+        $cod = $_POST['id_conta'];
+        $id_tipo = $_POST['id_tipo'];
+        $money = $_POST['valor'];
+        $valor = str_replace(',', '.', str_replace('.','',$money));
+        $data_Nasc = new DateTime($_POST['data_venc']);
+        $data = $data_Nasc->format('Y-m-d');
+        $id_integrante = $_POST['id_integrante'];
+        
+        $sql1 = $link->prepare("UPDATE conta SET `id_tipo` = '$id_tipo', `valor` = '$valor', `data_venc` = '$data', `id_integrante` = '$id_integrante' WHERE `conta`.`id_conta` = '$cod';");
+        
+        // execute the query
+        $sql1->execute();
+    
+        if($sql1->rowCount()){
+          echo "<script language='javascript' type='text/javascript'>alert('Alteração Efetuada!');window.location.href='./alteraDivida.php';</script>";
+        } else {
+          echo mysql_error();
+          echo "<script language='javascript' type='text/javascript'>alert('Error na Alteração!');</script>";
+        }
+      } 
+    ?>
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">
