@@ -131,10 +131,11 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-label-group">
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required" onkeypress="Verifica(this)" autocomplete="off">
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required" autocomplete="off">
                     <label for="confirmPassword">Confirme a Senha</label>
                   </div>
                 </div>
+                <!--
                 <script>
                   function Verifica(input){
                     if (input.value == document.getElementById('confirmPassword').value) {
@@ -158,6 +159,7 @@
                     */
                   }
                 </script>
+                -->
               </div>
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Registrar" name="cadastrar"/>
