@@ -40,7 +40,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REPGEMENT - remover</title>
+    <title>REPGEMENT - consultar</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -99,7 +99,7 @@
             <span>Operações</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Contas:</h6>
+            <h6 class="dropdown-header">Dividas:</h6>
             <a class="dropdown-item" href="lancamento.php">Lançamentos</a>
             <a class="dropdown-item" href="divida.php">Dívidas</a>
             <div class="dropdown-divider"></div>
@@ -130,7 +130,7 @@
               <a href="home.php">Painel de Controle</a>
             </li>
             <li class="breadcrumb-item">
-              <a href="divida.php">Contas</a>
+              <a href="divida.php">Dividas</a>
             </li>
             <li class="breadcrumb-item active">Consultar contas</li>
           </ol>         
@@ -181,18 +181,16 @@
                 $sql->execute();
                 $linha = $sql->fetch(PDO::FETCH_ASSOC);
           ?>
-
           <div class="container">
-            <div class="card mb-3">
+          <div class="card mb-3">
               <div class="card-header">
                 <i class="fas fa-table"></i>
                 Dados
               </div>
-              <div class="card-body">
-                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+                <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                      <thead>
+                    <table class="table table-bordered text-center" width="100%" cellspacing="0">
+                      <thead class="thead-dark">
                         <tr>
                           <th>Tipo de divida</th>
                           <th>Valor da divida R$</th>
