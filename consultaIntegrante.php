@@ -19,6 +19,20 @@
        
       $logado = $_SESSION['login'];
     ?>
+    <?php
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $id_rep = $_SESSION['id_republica'];
+
+      $sql = $link->prepare("SELECT id_integrante, nome FROM integrante WHERE id_republica = $id_rep ORDER BY nome;");
+
+      $sql->execute();
+    ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -124,24 +138,125 @@
           <div class="container">
       <div class="card card-register mx-auto mt-5">
         <div class="card-header text-center">Consultar integrante</div>
-        <div class="card-body">
-          <form action="POST">
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-12">
-                  <div class="form-label-group">
-                    <input type="number" id="firstCodigoInt" class="form-control" placeholder="Codigo do Integrante" name="codigoInt" required="required" autofocus="autofocus">
-                    <label for="firstCodigoInt">Codigo do Integrante</label>
+          <div class="card-body">
+            <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+              <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-12">
+                    <div class="form-label-group">
+                      <label for="firstCodigoInt">Integrante</label>
+                      <select class="col-md-12 col-md-12 form-control" name="integrante" id="id_integrante">
+                        <option selected disabled="disabled">Selecione...</option>
+                        <?php
+                          while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                            echo '<option value=' . $linha['id_integrante'] . '>' . $linha['nome'] . '</option>';
+                          }
+                        ?>
+                      </select>
+                    </div>
                   </div>
                 </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-block" name="submit">Consultar Integrante</button>
               </div>
-              <br>
-              <input type="submit" value="Pesquisar Integrante" class="btn btn-primary btn-block">
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
+    <?php
+      if(isset($_POST["submit"])){
+        $cod = $_POST['integrante'];
+
+        if(empty($cod) || ($cod=="Selecione...")) {
+          echo "<script language='javascript' type='text/javascript'>alert('Selecione uma opção!');</script>";
+        } else {
+          date_default_timezone_set('America/Sao_Paulo');
+
+          $sql = $link->prepare("SELECT * FROM integrante WHERE id_integrante = $cod LIMIT 1;");
+          $sql->execute();
+          $linha = $sql->fetch(PDO::FETCH_ASSOC);
+
+          echo '
+                <div class="card mb-3">
+                  <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Dados</div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Nome</th>
+                            <th>Data de Nascimento</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>'. $linha['nome'] . ' ' . $linha['sobrenome'] .'</td>
+                            <td>' . $linha['data_Nasc'] . '</td>
+                            <td>' . $linha['email'] . '</td>
+                            <td>' . $linha['username'] . '</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-footer small text-muted">Atualizado às ' . date('H:i') . '.</div>
+                </div>
+              ';
+
+          $cod = $linha['id_integrante'];
+
+          $sql1 = $link->prepare("SELECT c.data_venc, t.nome_tipo, c.valor FROM conta c, tipo_conta t WHERE c.id_integrante = $cod AND c.id_tipo = t.id_tipo;");
+          $sql1->execute();
+          $linha1 = $sql1->fetchAll();
+
+          echo '
+                <div class="card mb-3">
+                  <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Contas</div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th>Data de Vencimento</th>
+                            <th>Tipo da Conta</th>
+                            <th>Valor</th>
+                            <th>Pago</th>
+                          </tr>
+                        </thead>
+                        <tbody>';
+                          foreach($linha1 as $row) {
+
+                          echo '
+                            <tr>
+                              <td>'. $row['data_venc'] .'</td>
+                              <td>' . $row['nome_tipo'] . '</td>
+                              <td> R$ ' . $row['valor'] . '</td>
+                              <td></td>
+                            </tr>
+                          ';
+                          
+                          }
+
+                          echo '
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card-footer small text-muted">Atualizado às ' . date('H:i') . '.</div>
+                </div>
+              ';
+        }
+      }
+    ?>
+    
+                
          <!-- Sticky Footer -->
         <footer class="sticky-footer">
           <div class="container my-auto">

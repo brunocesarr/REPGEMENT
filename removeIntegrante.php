@@ -2,7 +2,8 @@
 <html lang="pt-br">
 
   <head>
-    <?php 
+    <?php
+      error_reporting(0); 
       /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
        simplesmente não fazer o login e digitar na barra de endereço do seu navegador 
       o caminho para a página principal do site (sistema), burlando assim a obrigação de 
@@ -19,6 +20,20 @@
        
       $logado = $_SESSION['login'];
     ?>
+    <?php
+      include_once './mysql.php';
+
+      //  Realiza a busca na base de dados isso
+      $con = new Conexao();
+      $link = $con->conexao();
+
+      $id_rep = $_SESSION['id_republica'];
+
+      $sql = $link->prepare("SELECT id_integrante, nome FROM integrante WHERE id_republica = $id_rep ORDER BY nome;");
+
+      $sql->execute();
+    ?>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,7 +56,7 @@
 
   </head>
 
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
       <a class="navbar-brand mr-1" href="home.php">REPGEMENT</a>
 
@@ -50,22 +65,21 @@
       </button>
 
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#"> </a>
-            <a class="dropdown-item" href="#"><?php echo $logado ?> </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
-          </div>
-        </li>
-      </ul>
-        </form>
-
+        <!-- Navbar -->
+        <ul class="navbar-nav ml-auto ml-md-0">
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user-circle fa-fw"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="#"> </a>
+              <a class="dropdown-item" href="#"><?php echo $logado ?> </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Sair</a>
+            </div>
+          </li>
+        </ul>
+      </form>
     </nav>
 
 
@@ -122,25 +136,99 @@
           </ol>         
 
           <div class="container">
-      <div class="card card-register mx-auto mt-5">
-        <div class="card-header text-center">Remover integrante</div>
-        <div class="card-body">
-          <form action="POST">
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col-md-12">
-                  <div class="form-label-group">
-                    <input type="number" id="firstCodigoInt" class="form-control" placeholder="Codigo do Integrante" name="codigoInt" required="required" autofocus="autofocus">
-                    <label for="firstCodigoInt">Codigo do Integrante</label>
+            <div class="card card-register mx-auto mt-5">
+              <div class="card-header text-center">Remover integrante</div>
+              <div class="card-body">
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+                  <div class="form-group">
+                    <div class="form-row">
+                      <div class="col-md-12">
+                        <div class="form-label-group">
+                          <label for="firstCodigoInt">Integrante</label>
+                          <select class="col-md-12 col-md-12 form-control" name="integrante" id="id_integrante">
+                            <option selected disabled="disabled">Selecione...</option>
+                            <?php
+                              while ($linha = $sql->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<option value=' . $linha['id_integrante'] . '>' . $linha['nome'] . '</option>';
+                              }
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary btn-block" name="submit">Consultar Integrante</button>
                   </div>
-                </div>
+                </form>
               </div>
-              <br>
-              <input type="submit" value="Pesquisar Integrante" class="btn btn-primary btn-block">
-          </form>
-        </div>
-      </div>
-    </div>
+            </div>
+          </div>
+
+          <?php
+            if(isset($_POST["submit"])){
+              $cod = $_POST['integrante'];
+
+              if(empty($cod) || ($cod=="Selecione...")) {
+                echo "<script language='javascript' type='text/javascript'>alert('Selecione uma opção!');</script>";
+              } else {
+                date_default_timezone_set('America/Sao_Paulo');
+
+                $sql = $link->prepare("SELECT * FROM integrante WHERE id_integrante = $cod LIMIT 1;");
+                $sql->execute();
+                $linha = $sql->fetch(PDO::FETCH_ASSOC);
+          ?>
+
+          <div class="container">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fas fa-table"></i>
+                Dados
+              </div>
+              <div class="card-body">
+                <form method="POST" action="<?php $_SERVER['PHP_SELF'];?>">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>Nome</th>
+                          <th>Data de Nascimento</th>
+                          <th>Email</th>
+                          <th>Username</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><?php echo $linha['nome'] . " " . $linha['sobrenome']; ?></td>
+                          <td><?php echo $linha['data_Nasc']; ?></td>
+                          <td><?php echo $linha['email']; ?></td>
+                          <td><?php echo $linha['username']; ?></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+              <div class="card-footer small text-muted col-md-6">Atualizado às '<?php echo date('H:i'); ?>'.</div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" name="remove" value="Remover Integrante" /> 
+          </div>
+        
+          <?php
+              }
+            } 
+
+            if(isset($_POST["remove"])){
+              $sql = $link->prepare("DELETE FROM integrante WHERE id_integrante = $cod;");
+              // execute the query
+              $sql->execute();
+          
+              if($sql->rowCount()){
+                echo "<script language='javascript' type='text/javascript'>alert('Remoção Efetuada!');window.location.href='./alteraIntegrante.php';</script>";
+              } else {
+                echo "<script language='javascript' type='text/javascript'>alert('Error na Remoção!');</script>";
+              }
+            }
+          ?>
 
          <!-- Sticky Footer -->
         <footer class="sticky-footer">

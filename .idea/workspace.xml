@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc87cb58-cd56-4787-b047-cce359e1eccc" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addIntegrante.php" afterPath="$PROJECT_DIR$/addIntegrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alteraDivida.php" afterPath="$PROJECT_DIR$/alteraDivida.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alteraIntegrante.php" afterPath="$PROJECT_DIR$/alteraIntegrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/charts.php" afterPath="$PROJECT_DIR$/charts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultaDivida.php" afterPath="$PROJECT_DIR$/consultaDivida.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultaIntegrante.php" afterPath="$PROJECT_DIR$/consultaIntegrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/divida.php" afterPath="$PROJECT_DIR$/divida.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.php" afterPath="$PROJECT_DIR$/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home2.php" afterPath="$PROJECT_DIR$/home2.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/integrante.php" afterPath="$PROJECT_DIR$/integrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lancamento.php" afterPath="$PROJECT_DIR$/lancamento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logout.php" afterPath="$PROJECT_DIR$/logout.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysql.php" afterPath="$PROJECT_DIR$/mysql.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/removeDivida.php" afterPath="$PROJECT_DIR$/removeDivida.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/removeIntegrante.php" afterPath="$PROJECT_DIR$/removeIntegrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tables.php" afterPath="$PROJECT_DIR$/tables.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/totalgasto.php" afterPath="$PROJECT_DIR$/totalgasto.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,13 +17,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="alteraIntegrante.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/alteraIntegrante.php">
+      <file leaf-file-name="consultaIntegrante.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/consultaIntegrante.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="160" column="0" lean-forward="false" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="211" column="42" lean-forward="true" selection-start-line="211" selection-start-column="42" selection-end-line="211" selection-end-column="42" />
               <folding>
-                <marker date="1544389468011" expanded="true" signature="1129:1214" ph="SELECT id_in... integrante" />
+                <marker date="1544536117382" expanded="true" signature="1141:1226" ph="SELECT id_in... integrante" />
+                <marker date="1544536117382" expanded="true" signature="6755:6816" ph="SELECT * FRO... integrante" />
+                <marker date="1544536117382" expanded="true" signature="6954:8192" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="6998:7079" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="7121:8077" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="7172:8052" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="7275:8025" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="7307:7590" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="7338:7557" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="7622:7994" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="7653:7961" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="8289:8423" ph="SELECT `c.da... conta" />
+                <marker date="1544536117382" expanded="true" signature="8564:9790" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="8608:8690" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="8732:9675" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="8783:9650" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="8886:9623" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="8918:9206" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="8949:9173" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="9238:9592" ph="..." />
+                <marker date="1544536117382" expanded="true" signature="9269:9559" ph="..." />
               </folding>
             </state>
           </provider>
@@ -86,6 +92,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,8 +105,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -138,11 +144,12 @@
       <updated>1544387975572</updated>
       <workItem from="1544387980699" duration="205000" />
       <workItem from="1544388462455" duration="913000" />
+      <workItem from="1544536355414" duration="263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1118000" />
+    <option name="totallyTimeSpent" value="1381000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1366" height="725" extended-state="6" />
@@ -183,17 +190,63 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1544389468011" expanded="true" signature="1129:1214" ph="SELECT id_in... integrante" />
+            <marker date="1544532108572" expanded="true" signature="1153:1238" ph="SELECT id_in... integrante" />
+            <marker date="1544532108572" expanded="true" signature="7271:7332" ph="SELECT * FRO... integrante" />
+            <marker date="1544532108572" expanded="true" signature="12063:12262" ph="UPDATE integ... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/alteraIntegrante.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="160" column="0" lean-forward="false" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1544389468011" expanded="true" signature="1129:1214" ph="SELECT id_in... integrante" />
+            <marker date="1544532108572" expanded="true" signature="1153:1238" ph="SELECT id_in... integrante" />
+            <marker date="1544532108572" expanded="true" signature="7271:7332" ph="SELECT * FRO... integrante" />
+            <marker date="1544532108572" expanded="true" signature="12063:12262" ph="UPDATE integ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alteraIntegrante.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="186" column="0" lean-forward="true" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding>
+            <marker date="1544532108572" expanded="true" signature="1153:1238" ph="SELECT id_in... integrante" />
+            <marker date="1544532108572" expanded="true" signature="7271:7332" ph="SELECT * FRO... integrante" />
+            <marker date="1544532108572" expanded="true" signature="12063:12262" ph="UPDATE integ... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/consultaIntegrante.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="211" column="42" lean-forward="true" selection-start-line="211" selection-start-column="42" selection-end-line="211" selection-end-column="42" />
+          <folding>
+            <marker date="1544536117382" expanded="true" signature="1141:1226" ph="SELECT id_in... integrante" />
+            <marker date="1544536117382" expanded="true" signature="6755:6816" ph="SELECT * FRO... integrante" />
+            <marker date="1544536117382" expanded="true" signature="6954:8192" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="6998:7079" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="7121:8077" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="7172:8052" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="7275:8025" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="7307:7590" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="7338:7557" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="7622:7994" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="7653:7961" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="8289:8423" ph="SELECT `c.da... conta" />
+            <marker date="1544536117382" expanded="true" signature="8564:9790" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="8608:8690" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="8732:9675" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="8783:9650" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="8886:9623" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="8918:9206" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="8949:9173" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="9238:9592" ph="..." />
+            <marker date="1544536117382" expanded="true" signature="9269:9559" ph="..." />
           </folding>
         </state>
       </provider>

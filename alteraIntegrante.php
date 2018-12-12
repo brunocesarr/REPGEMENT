@@ -3,6 +3,7 @@
 
   <head>
     <?php
+      error_reporting(0);
       /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
        simplesmente não fazer o login e digitar na barra de endereço do seu navegador
       o caminho para a página principal do site (sistema), burlando assim a obrigação de
@@ -162,6 +163,19 @@
       </div>
     </div>
 
+    <!--
+    <script type="text/javascript">
+      function mostra() {
+        if(document.getElementById('id_integrante').empty() || document.getElementById('id_integrante').value == "Selecione..."){
+          alert("Selecione um integrante!");
+        } else {
+          document.getElementById('formulario').style.display = "block";
+          //  document.form1.submit();
+        }
+      }
+    </script>
+    -->
+
     <?php
       if(isset($_POST["submit"])){
         $cod = $_POST['integrante'];
@@ -179,7 +193,7 @@
     ?>
          
     
-    <div class="container" id="formulario" style="display: block;">
+    <div class="container" id="formulario">
         <div class="card card-register mx-auto mt-5">
             <div class="card-header text-center">Alterar Integrante</div>
             <div class="card-body">
@@ -187,6 +201,11 @@
                     <div class="form-group">
                         <div class="card-header text-center">Dados</div><br>
                         <div class="form-row">
+                            <div class="">
+                                <div class="form-label-group">
+                                    <input type="hidden" id="id" class="form-control" placeholder="id_integrante" required="required" autofocus="autofocus" name="id_integrante" value="<?php echo $linha['id_integrante']; ?>">
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-label-group">
                                     <input type="text" id="firstName" class="form-control" placeholder="Nome" required="required" autofocus="autofocus" name="nome" value="<?php echo $linha['nome']; ?>">
@@ -240,7 +259,7 @@
 
     <?php
       if(isset($_POST["alterIntegrante"])){
-        $cod = $linha['id_integrante'];
+        $cod = $_POST['id_integrante'];
         $nome = ucfirst(strtolower($_POST['nome']));
         $sobrenome = ucfirst(strtolower($_POST['sobrenome']));
         $data_Nasc = new DateTime($_POST['data_Nasc']);
@@ -251,9 +270,13 @@
         
         $sql1 = $link->prepare("UPDATE integrante SET `nome` = '$nome', `sobrenome` = '$sobrenome', `data_Nasc` = '$data', `email` = '$email', `username` = '$username', `senha` = '$senha' WHERE `integrante`.`id_integrante` = '$cod';");
         
-        if($sql1->execute()){
+        // execute the query
+        $sql1->execute();
+    
+        if($sql1->rowCount()){
           echo "<script language='javascript' type='text/javascript'>alert('Alteração Efetuada!');window.location.href='./alteraIntegrante.php';</script>";
         } else {
+          echo mysql_error();
           echo "<script language='javascript' type='text/javascript'>alert('Error na Alteração!');</script>";
         }
       } 
