@@ -36,7 +36,7 @@
     $link->commit();
     echo"<script language='javascript' type='text/javascript'>alert('Cadastro Efetuado.');</script>";
     if (isset($_POST['cadastrar'])){
-      echo "<script language='javascript' type='text/javascript'>window.location.href='./index.html';</script>";
+      echo "<script language='javascript' type='text/javascript'>window.location.href='./index.php';</script>";
     }
     if (isset($_POST['addIntegrante'])){
       echo "<script language='javascript' type='text/javascript'>window.location.href='./integrante.php';</script>";

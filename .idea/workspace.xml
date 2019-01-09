@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dc87cb58-cd56-4787-b047-cce359e1eccc" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/addIntegrante.php" afterPath="$PROJECT_DIR$/addIntegrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/alteraDivida.php" afterPath="$PROJECT_DIR$/alteraDivida.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/consultaIntegrante.php" afterPath="$PROJECT_DIR$/consultaIntegrante.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/home.php" afterPath="$PROJECT_DIR$/home.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lancamento.php" afterPath="$PROJECT_DIR$/lancamento.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cadastrar.php" afterPath="$PROJECT_DIR$/cadastrar.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mysql.php" afterPath="$PROJECT_DIR$/mysql.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/removeIntegrante.php" afterPath="$PROJECT_DIR$/removeIntegrante.php" />
     </list>
@@ -19,21 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="lancamento.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lancamento.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="185" column="50" lean-forward="false" selection-start-line="185" selection-start-column="50" selection-end-line="185" selection-end-column="50" />
-              <folding>
-                <marker date="1544640570501" expanded="true" signature="1141:1201" ph="SELECT id_ti... tipo_conta" />
-                <marker date="1544640570501" expanded="true" signature="1268:1353" ph="SELECT id_in... integrante" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -84,6 +66,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -95,12 +78,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../KageHand" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
@@ -139,17 +121,19 @@
       <workItem from="1544618608822" duration="49000" />
       <workItem from="1544621551396" duration="1916000" />
       <workItem from="1544640296776" duration="307000" />
+      <workItem from="1545262164810" duration="354000" />
+      <workItem from="1545826856957" duration="58000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3653000" />
+    <option name="totallyTimeSpent" value="4065000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1366" height="725" extended-state="6" />
+    <frame x="0" y="0" width="1366" height="718" extended-state="6" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12518302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12518302" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -179,14 +163,22 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/home.php">
+    <entry file="file://$PROJECT_DIR$/lancamento.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1544639000843" expanded="true" signature="1248:1324" ph="SELECT * FRO... integrante" />
-            <marker date="1544639000843" expanded="true" signature="1359:1512" ph="SELECT c.dat... conta" />
+            <marker date="1544648348491" expanded="true" signature="1141:1201" ph="SELECT id_ti... tipo_conta" />
+            <marker date="1544648348491" expanded="true" signature="1268:1353" ph="SELECT id_in... integrante" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/home.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -241,7 +233,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="49" column="23" lean-forward="true" selection-start-line="49" selection-start-column="23" selection-end-line="49" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -303,20 +294,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1380">
           <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-          <folding>
-            <marker date="1544639000843" expanded="true" signature="1248:1324" ph="SELECT * FRO... integrante" />
-            <marker date="1544639000843" expanded="true" signature="1359:1512" ph="SELECT c.dat... conta" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lancamento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="185" column="50" lean-forward="false" selection-start-line="185" selection-start-column="50" selection-end-line="185" selection-end-column="50" />
+        <state relative-caret-position="15">
+          <caret line="185" column="38" lean-forward="false" selection-start-line="185" selection-start-column="38" selection-end-line="185" selection-end-column="38" />
           <folding>
-            <marker date="1544640570501" expanded="true" signature="1141:1201" ph="SELECT id_ti... tipo_conta" />
-            <marker date="1544640570501" expanded="true" signature="1268:1353" ph="SELECT id_in... integrante" />
+            <marker date="1544648348491" expanded="true" signature="1141:1201" ph="SELECT id_ti... tipo_conta" />
+            <marker date="1544648348491" expanded="true" signature="1268:1353" ph="SELECT id_in... integrante" />
           </folding>
         </state>
       </provider>
